@@ -75,3 +75,75 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Snowfall Animation Enhancement */
+.snowflakes-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 5;
+  pointer-events: none;
+  perspective: 500px;
+}
+
+.snowflake {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  width: 8px;
+  height: 8px;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+  animation: snowflake-fall var(--fall-duration) linear infinite, 
+             snowflake-wobble var(--wobble-duration) ease-in-out infinite,
+             snowflake-depth var(--depth-duration) ease-in-out infinite;
+}
+
+.snowflake:nth-child(1) { --fall-duration: 9s; --wobble-duration: 4s; --depth-duration: 10s; left: 10%; animation-delay: 0s, 1s, 0s; }
+.snowflake:nth-child(2) { --fall-duration: 15s; --wobble-duration: 6s; --depth-duration: 13s; left: 20%; animation-delay: 1s, 0s, 2s; }
+.snowflake:nth-child(3) { --fall-duration: 12s; --wobble-duration: 5s; --depth-duration: 15s; left: 30%; animation-delay: 2s, 2s, 1s; }
+.snowflake:nth-child(4) { --fall-duration: 18s; --wobble-duration: 7s; --depth-duration: 11s; left: 40%; animation-delay: 0s, 1.5s, 3s; }
+.snowflake:nth-child(5) { --fall-duration: 10s; --wobble-duration: 3s; --depth-duration: 14s; left: 50%; animation-delay: 3s, 0.5s, 2s; }
+.snowflake:nth-child(6) { --fall-duration: 14s; --wobble-duration: 6s; --depth-duration: 12s; left: 60%; animation-delay: 1s, 3s, 1s; }
+.snowflake:nth-child(7) { --fall-duration: 16s; --wobble-duration: 4s; --depth-duration: 9s; left: 70%; animation-delay: 2.5s, 1s, 0s; }
+.snowflake:nth-child(8) { --fall-duration: 11s; --wobble-duration: 5.5s; --depth-duration: 13s; left: 80%; animation-delay: 0.5s, 2s, 2.5s; }
+.snowflake:nth-child(9) { --fall-duration: 13s; --wobble-duration: 4.5s; --depth-duration: 10s; left: 90%; animation-delay: 1.5s, 0s, 1s; }
+.snowflake:nth-child(10) { --fall-duration: 17s; --wobble-duration: 6.5s; --depth-duration: 15s; left: 15%; animation-delay: 3s, 2.5s, 0.5s; }
+.snowflake:nth-child(11) { --fall-duration: 19s; --wobble-duration: 7.5s; --depth-duration: 12s; left: 25%; animation-delay: 2s, 1s, 3s; }
+.snowflake:nth-child(12) { --fall-duration: 8s; --wobble-duration: 3.5s; --depth-duration: 14s; left: 35%; animation-delay: 0s, 3s, 1.5s; }
+.snowflake:nth-child(13) { --fall-duration: 14s; --wobble-duration: 5s; --depth-duration: 11s; left: 45%; animation-delay: 1.5s, 0.5s, 2s; }
+.snowflake:nth-child(14) { --fall-duration: 12s; --wobble-duration: 4s; --depth-duration: 15s; left: 55%; animation-delay: 3.5s, 2s, 0s; }
+.snowflake:nth-child(15) { --fall-duration: 16s; --wobble-duration: 7s; --depth-duration: 9s; left: 65%; animation-delay: 0.5s, 1s, 2.5s; }
+.snowflake:nth-child(16) { --fall-duration: 10s; --wobble-duration: 5s; --depth-duration: 13s; left: 75%; animation-delay: 2s, 0s, 1s; }
+.snowflake:nth-child(17) { --fall-duration: 13s; --wobble-duration: 6s; --depth-duration: 16s; left: 85%; animation-delay: 1s, 2.5s, 0.5s; }
+.snowflake:nth-child(18) { --fall-duration: 15s; --wobble-duration: 4.5s; --depth-duration: 12s; left: 95%; animation-delay: 0s, 1.5s, 3s; }
+
+@keyframes snowflake-fall {
+  0% {
+    top: -10%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+@keyframes snowflake-wobble {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(15px);
+  }
+}
+
+@keyframes snowflake-depth {
+  0%, 100% {
+    transform: translateZ(0);
+  }
+  50% {
+    transform: translateZ(150px);
+  }
+}
