@@ -16,8 +16,12 @@ const FixturesPage = () => {
   return (
     <div>
       {/* Fixtures Hero */}
-      <div className="bg-young-everest-primary text-white py-16">
-        <div className="container-custom text-center">
+      <div className="bg-young-everest-primary text-white py-16 relative overflow-hidden">
+        {/* Mountain pattern with gradient overlay */}
+        <div className="absolute inset-0 mountain-pattern opacity-20"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-young-everest-dark opacity-40"></div>
+        
+        <div className="container-custom text-center relative z-10">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Fixtures & Results</h1>
           <p className="text-xl text-young-everest-light max-w-3xl mx-auto">
             Follow Young Everest FC's journey throughout the season
@@ -29,19 +33,23 @@ const FixturesPage = () => {
       <section className="py-8 bg-white">
         <div className="container-custom">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-young-everest-light p-4 rounded-lg text-center">
+            <div className="bg-young-everest-light p-4 rounded-lg text-center shadow-md relative overflow-hidden group">
+              <div className="absolute bottom-0 right-0 w-0 h-0 border-b-16 border-r-16 border-young-everest-secondary border-opacity-10 transition-opacity duration-300 group-hover:border-opacity-20"></div>
               <div className="text-3xl font-bold text-young-everest-primary mb-1">14</div>
               <div className="text-sm text-gray-600">Matches Played</div>
             </div>
-            <div className="bg-young-everest-light p-4 rounded-lg text-center">
+            <div className="bg-young-everest-light p-4 rounded-lg text-center shadow-md relative overflow-hidden group">
+              <div className="absolute bottom-0 right-0 w-0 h-0 border-b-16 border-r-16 border-young-everest-secondary border-opacity-10 transition-opacity duration-300 group-hover:border-opacity-20"></div>
               <div className="text-3xl font-bold text-young-everest-primary mb-1">9</div>
               <div className="text-sm text-gray-600">Wins</div>
             </div>
-            <div className="bg-young-everest-light p-4 rounded-lg text-center">
+            <div className="bg-young-everest-light p-4 rounded-lg text-center shadow-md relative overflow-hidden group">
+              <div className="absolute bottom-0 right-0 w-0 h-0 border-b-16 border-r-16 border-young-everest-secondary border-opacity-10 transition-opacity duration-300 group-hover:border-opacity-20"></div>
               <div className="text-3xl font-bold text-young-everest-primary mb-1">3</div>
               <div className="text-sm text-gray-600">Draws</div>
             </div>
-            <div className="bg-young-everest-light p-4 rounded-lg text-center">
+            <div className="bg-young-everest-light p-4 rounded-lg text-center shadow-md relative overflow-hidden group">
+              <div className="absolute bottom-0 right-0 w-0 h-0 border-b-16 border-r-16 border-young-everest-secondary border-opacity-10 transition-opacity duration-300 group-hover:border-opacity-20"></div>
               <div className="text-3xl font-bold text-young-everest-primary mb-1">2</div>
               <div className="text-sm text-gray-600">Losses</div>
             </div>

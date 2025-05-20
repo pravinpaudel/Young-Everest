@@ -25,8 +25,14 @@ const FixtureCard = ({
   
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-      <div className="p-4 bg-young-everest-light">
-        <div className="text-sm text-gray-600 mb-1">{competition}</div>
+      <div className="p-4 bg-young-everest-light relative">
+        {/* Mountain peak silhouette */}
+        <div className="absolute bottom-0 left-0 right-0 h-8 mountain-pattern opacity-20"></div>
+        
+        <div className="text-sm text-gray-600 mb-1 flex items-center">
+          <span className="inline-block w-2 h-2 bg-young-everest-secondary rounded-full mr-2"></span>
+          {competition}
+        </div>
         <div className="flex justify-between items-center">
           <div className="flex-1">
             <div className={`text-lg font-bold ${isYoungEverestHome ? 'text-young-everest-primary' : ''}`}>
@@ -35,13 +41,13 @@ const FixtureCard = ({
           </div>
           
           {isCompleted ? (
-            <div className="flex items-center justify-center mx-4">
+            <div className="flex items-center justify-center mx-4 bg-white bg-opacity-60 px-3 py-1 rounded-full shadow-sm">
               <span className="text-2xl font-bold text-gray-800">{homeScore}</span>
               <span className="mx-2 text-gray-400">-</span>
               <span className="text-2xl font-bold text-gray-800">{awayScore}</span>
             </div>
           ) : (
-            <div className="flex items-center justify-center mx-4">
+            <div className="flex items-center justify-center mx-4 bg-young-everest-secondary bg-opacity-20 px-3 py-1 rounded-full">
               <span className="text-xl font-bold text-young-everest-primary">VS</span>
             </div>
           )}
@@ -80,10 +86,14 @@ const FixtureCard = ({
       
       {isCompleted && (
         <div className="px-4 pb-4">
-          <button className="text-young-everest-primary text-sm font-medium hover:underline">
-            View Match Report
+          <button className="text-young-everest-primary text-sm font-medium hover:underline flex items-center">
+            <span className="mr-1">📋</span> View Match Report
           </button>
         </div>
+      )}
+      
+      {!isCompleted && (
+        <div className="w-full h-1 bg-gradient-to-r from-young-everest-primary via-young-everest-secondary to-young-everest-primary"></div>
       )}
     </div>
   );

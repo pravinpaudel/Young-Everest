@@ -44,8 +44,13 @@ const ContactPage = () => {
   return (
     <div>
       {/* Contact Hero */}
-      <div className="bg-young-everest-primary text-white py-16">
-        <div className="container-custom text-center">
+      <div className="bg-young-everest-primary text-white py-16 relative overflow-hidden">
+        {/* Mountain pattern background */}
+        <div className="absolute inset-0 mountain-pattern opacity-20"></div>
+        {/* Snow overlay */}
+        <div className="absolute inset-0 snow-overlay"></div>
+        
+        <div className="container-custom text-center relative z-10">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
           <p className="text-xl text-young-everest-light max-w-3xl mx-auto">
             Get in touch with Young Everest FC for inquiries, feedback, or to join our club

@@ -4,8 +4,11 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-young-everest-dark text-white py-8">
-      <div className="container-custom">
+    <footer className="bg-young-everest-dark text-white py-8 relative">
+      {/* Mountain silhouette */}
+      <div className="absolute bottom-0 left-0 right-0 h-16 mountain-pattern" aria-hidden="true"></div>
+      
+      <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-1">
             <h3 className="text-xl font-bold mb-4 text-young-everest-secondary">Young Everest FC</h3>
@@ -39,19 +42,19 @@ const Footer = () => {
             <h3 className="text-lg font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="hover:text-young-everest-secondary transition-colors">Home</Link>
+                <Link to="/" className="climbing-link hover:text-young-everest-secondary transition-colors">Home</Link>
               </li>
               <li>
-                <Link to="/team" className="hover:text-young-everest-secondary transition-colors">Team</Link>
+                <Link to="/team" className="climbing-link hover:text-young-everest-secondary transition-colors">Team</Link>
               </li>
               <li>
-                <Link to="/fixtures" className="hover:text-young-everest-secondary transition-colors">Fixtures</Link>
+                <Link to="/fixtures" className="climbing-link hover:text-young-everest-secondary transition-colors">Fixtures</Link>
               </li>
               <li>
-                <Link to="/news" className="hover:text-young-everest-secondary transition-colors">News</Link>
+                <Link to="/news" className="climbing-link hover:text-young-everest-secondary transition-colors">News</Link>
               </li>
               <li>
-                <Link to="/contact" className="hover:text-young-everest-secondary transition-colors">Contact</Link>
+                <Link to="/contact" className="climbing-link hover:text-young-everest-secondary transition-colors">Contact</Link>
               </li>
             </ul>
           </div>
@@ -59,10 +62,10 @@ const Footer = () => {
           <div className="col-span-1">
             <h3 className="text-lg font-bold mb-4">Training Times</h3>
             <ul className="space-y-2">
-              <li>Monday: 6:00 PM - 8:00 PM</li>
-              <li>Wednesday: 6:00 PM - 8:00 PM</li>
-              <li>Friday: 5:30 PM - 7:30 PM</li>
-              <li>Saturday: 10:00 AM - 12:00 PM (Youth)</li>
+              <li className="flex items-center"><span className="inline-block w-2 h-2 bg-young-everest-secondary rounded-full mr-2"></span> Monday: 6:00 PM - 8:00 PM</li>
+              <li className="flex items-center"><span className="inline-block w-2 h-2 bg-young-everest-secondary rounded-full mr-2"></span> Wednesday: 6:00 PM - 8:00 PM</li>
+              <li className="flex items-center"><span className="inline-block w-2 h-2 bg-young-everest-secondary rounded-full mr-2"></span> Friday: 5:30 PM - 7:30 PM</li>
+              <li className="flex items-center"><span className="inline-block w-2 h-2 bg-young-everest-secondary rounded-full mr-2"></span> Saturday: 10:00 AM - 12:00 PM (Youth)</li>
             </ul>
           </div>
           
@@ -80,6 +83,13 @@ const Footer = () => {
         </div>
         
         <div className="mt-8 pt-6 border-t border-gray-700 text-center">
+          <div className="flex justify-center space-x-2 mb-4">
+            <span className="text-young-everest-secondary">⛰️</span>
+            <span className="text-young-everest-secondary">⛰️</span>
+            <span className="text-young-everest-secondary text-2xl">⛰️</span>
+            <span className="text-young-everest-secondary">⛰️</span>
+            <span className="text-young-everest-secondary">⛰️</span>
+          </div>
           <p>© {currentYear} Young Everest Football Club. All rights reserved.</p>
         </div>
       </div>

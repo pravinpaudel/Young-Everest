@@ -1,9 +1,23 @@
 import { Link } from 'react-router-dom';
+import heroImage from '../assets/images/HeroSection.png';
 
 const Hero = () => {
   return (
-    <div className="bg-young-everest-primary text-white">
-      <div className="container-custom py-16 md:py-24">
+    <div className="relative bg-young-everest-primary text-white overflow-hidden">
+      {/* Background image with overlay */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src={heroImage} 
+          alt="Mount Everest" 
+          className="w-full h-full object-cover opacity-20"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-young-everest-dark to-young-everest-primary opacity-80"></div>
+      </div>
+      
+      {/* Snowfall effect */}
+      <div className="absolute inset-0 z-0 snowfall"></div>
+      
+      <div className="container-custom py-20 md:py-32 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
@@ -14,7 +28,7 @@ const Hero = () => {
               and fostering a love for football in our community.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link to="/team" className="btn-secondary">
+              <Link to="/team" className="btn-secondary mountain-path">
                 Meet Our Team
               </Link>
               <Link to="/fixtures" className="btn-primary">
@@ -23,15 +37,12 @@ const Hero = () => {
             </div>
           </div>
           <div className="flex justify-center">
-            <div className="w-full max-w-md h-80 md:h-96 bg-young-everest-dark rounded-lg relative overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center text-white text-opacity-20 text-9xl font-bold">
-                YEFC
-              </div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <p className="text-center text-young-everest-secondary font-bold">
-                  [Club Logo/Image Placeholder]
-                </p>
-              </div>
+            <div className="w-full max-w-md h-80 md:h-96 bg-young-everest-dark bg-opacity-50 rounded-lg relative overflow-hidden border-2 border-young-everest-secondary shadow-2xl">
+              <img 
+                src="/src/assets/images/Logo.png" 
+                alt="Young Everest FC Logo" 
+                className="absolute inset-0 m-auto h-3/4 w-auto object-contain z-10"
+              />
             </div>
           </div>
         </div>

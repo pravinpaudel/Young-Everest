@@ -12,8 +12,13 @@ const TeamPage = () => {
   return (
     <div>
       {/* Team Hero */}
-      <div className="bg-young-everest-primary text-white py-16">
-        <div className="container-custom text-center">
+      <div className="bg-young-everest-primary text-white py-16 relative overflow-hidden">
+        {/* Mountain pattern overlay */}
+        <div className="absolute inset-0 mountain-pattern opacity-10"></div>
+        {/* Snowfall effect */}
+        <div className="absolute inset-0 snowfall opacity-50"></div>
+        
+        <div className="container-custom text-center relative z-10">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Team</h1>
           <p className="text-xl text-young-everest-light max-w-3xl mx-auto">
             Meet the players who represent Young Everest FC with pride and passion
@@ -25,21 +30,21 @@ const TeamPage = () => {
       <section className="py-12 bg-white">
         <div className="container-custom">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-young-everest-light p-6 rounded-lg text-center">
+            <div className="bg-young-everest-light p-6 rounded-lg text-center shadow-md transform hover:-translate-y-1 transition-transform duration-300">
               <div className="text-4xl font-bold text-young-everest-primary mb-2">25</div>
-              <div className="text-gray-600">Total Players</div>
+              <div className="text-gray-600 flex items-center justify-center"><span className="mr-2">⛰️</span>Total Players</div>
             </div>
-            <div className="bg-young-everest-light p-6 rounded-lg text-center">
+            <div className="bg-young-everest-light p-6 rounded-lg text-center shadow-md transform hover:-translate-y-1 transition-transform duration-300">
               <div className="text-4xl font-bold text-young-everest-primary mb-2">52</div>
-              <div className="text-gray-600">Goals Scored</div>
+              <div className="text-gray-600 flex items-center justify-center"><span className="mr-2">⚽</span>Goals Scored</div>
             </div>
-            <div className="bg-young-everest-light p-6 rounded-lg text-center">
+            <div className="bg-young-everest-light p-6 rounded-lg text-center shadow-md transform hover:-translate-y-1 transition-transform duration-300">
               <div className="text-4xl font-bold text-young-everest-primary mb-2">10</div>
-              <div className="text-gray-600">Clean Sheets</div>
+              <div className="text-gray-600 flex items-center justify-center"><span className="mr-2">🧤</span>Clean Sheets</div>
             </div>
-            <div className="bg-young-everest-light p-6 rounded-lg text-center">
+            <div className="bg-young-everest-light p-6 rounded-lg text-center shadow-md transform hover:-translate-y-1 transition-transform duration-300">
               <div className="text-4xl font-bold text-young-everest-primary mb-2">3rd</div>
-              <div className="text-gray-600">League Position</div>
+              <div className="text-gray-600 flex items-center justify-center"><span className="mr-2">🏆</span>League Position</div>
             </div>
           </div>
         </div>

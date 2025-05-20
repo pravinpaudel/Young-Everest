@@ -22,10 +22,11 @@ const Navbar = () => {
 
   return (
     <nav className="bg-young-everest-primary text-white shadow-md">
-      <div className="container-custom py-4">
+      <div className="container-custom py-2">
         <div className="flex justify-between items-center">
-          <Link to="/" className="flex items-center space-x-2">
-            <span className="font-display text-2xl font-bold text-young-everest-secondary">
+          <Link to="/" className="flex items-center space-x-3">
+            <img src="/src/assets/images/Logo.png" alt="Young Everest FC Logo" className="h-12 w-auto" />
+            <span className="font-display text-xl md:text-2xl font-bold text-young-everest-secondary">
               YOUNG EVEREST FC
             </span>
           </Link>
@@ -52,7 +53,7 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className={`hover:text-young-everest-secondary transition-colors font-medium ${
+                className={`climbing-link hover:text-young-everest-secondary transition-colors font-medium ${
                   isActive(link.path) ? 'text-young-everest-secondary' : ''
                 }`}
               >

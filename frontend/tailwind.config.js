@@ -8,11 +8,14 @@ export default {
     extend: {
       colors: {
         'young-everest': {
-          'primary': '#1a4d2e',    // Forest green (primary team color)
-          'secondary': '#ff9d00',  // Bright orange (secondary team color)
-          'accent': '#ffffff',     // White (accent color)
-          'dark': '#0a2514',       // Darker green for shadows
-          'light': '#e6f2e9',      // Light green for backgrounds
+          'primary': '#214662',    // Deep mountain blue
+          'secondary': '#e8952f',  // Mountain sunrise orange
+          'accent': '#ffffff',     // Snow white
+          'dark': '#0c2231',       // Night sky blue
+          'light': '#e8f0f6',      // Ice blue light
+          'stone': '#8c8987',      // Mountain rock gray
+          'ice': '#c9dbe5',        // Glacier ice
+          'summit': '#f5f7fa'      // Summit snow
         }
       },
       fontFamily: {

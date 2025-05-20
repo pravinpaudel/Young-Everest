@@ -55,7 +55,7 @@ const HomePage = () => {
       </section>
       
       {/* Featured Players Section */}
-      <section className="py-16 bg-young-everest-light hero-pattern">
+      <section className="py-16 bg-young-everest-light mountain-pattern">
         <div className="container-custom">
           <SectionTitle 
             title="Our Star Players" 
@@ -117,16 +117,16 @@ const HomePage = () => {
             </div>
             
             <div className="grid grid-cols-2 gap-4">
-              <div className="rounded-lg overflow-hidden h-48 bg-young-everest-primary flex items-center justify-center">
+              <div className="rounded-lg overflow-hidden h-48 bg-young-everest-primary flex items-center justify-center shadow-lg transform hover:scale-105 transition duration-300">
                 <span className="text-white text-opacity-50 text-center">Club Image 1</span>
               </div>
-              <div className="rounded-lg overflow-hidden h-48 bg-young-everest-secondary flex items-center justify-center">
+              <div className="rounded-lg overflow-hidden h-48 bg-young-everest-secondary flex items-center justify-center shadow-lg transform hover:scale-105 transition duration-300">
                 <span className="text-young-everest-dark text-opacity-50 text-center">Club Image 2</span>
               </div>
-              <div className="rounded-lg overflow-hidden h-48 bg-young-everest-secondary flex items-center justify-center">
+              <div className="rounded-lg overflow-hidden h-48 bg-young-everest-secondary flex items-center justify-center shadow-lg transform hover:scale-105 transition duration-300">
                 <span className="text-young-everest-dark text-opacity-50 text-center">Club Image 3</span>
               </div>
-              <div className="rounded-lg overflow-hidden h-48 bg-young-everest-primary flex items-center justify-center">
+              <div className="rounded-lg overflow-hidden h-48 bg-young-everest-primary flex items-center justify-center shadow-lg transform hover:scale-105 transition duration-300">
                 <span className="text-white text-opacity-50 text-center">Club Image 4</span>
               </div>
             </div>
@@ -135,8 +135,8 @@ const HomePage = () => {
       </section>
       
       {/* Latest News Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container-custom">
+      <section className="py-16 bg-gray-50 altitude-gradient snow-overlay">
+        <div className="container-custom relative z-10">
           <SectionTitle 
             title="Latest News" 
             subtitle="Stay updated with the latest happenings at Young Everest FC"
