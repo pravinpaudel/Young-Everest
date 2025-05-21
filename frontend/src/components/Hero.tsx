@@ -9,7 +9,7 @@ const Hero = () => {
         <img 
           src={heroImage} 
           alt="Mount Everest" 
-          className="w-full h-full object-cover opacity-30"
+          className="w-full h-full object-cover opacity-100"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-young-everest-dark to-young-everest-primary opacity-70"></div>
       </div>

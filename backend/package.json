@@ -1,0 +1,27 @@
+{
+  "name": "young-everest-backend",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "football",
+    "scraper",
+    "api"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "Backend API for Young Everest football application with web scraping capabilities",
+  "dependencies": {
+    "axios": "^1.9.0",
+    "cheerio": "^1.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10",
+    "puppeteer": "^24.9.0"
+  }
+}
