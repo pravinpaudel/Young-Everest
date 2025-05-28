@@ -41,7 +41,7 @@ const HomePage = () => {
                 time={fixture.time}
                 venue={fixture.venue}
                 competition={fixture.competition}
-                isCompleted={fixture.isCompleted}
+                status="{fixture.isCompleted}"
               />
             ))}
           </div>

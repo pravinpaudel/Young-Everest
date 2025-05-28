@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
-import { fetchFixtures, setFilter } from "../store/slices/fixturesSlice";
+import { useFixtures } from "../hooks/useFixtures";
 import type { SeasonStats } from "../store/slices/fixturesSlice";
 import FixtureCard from "./FixtureCard";
 
@@ -11,34 +10,23 @@ interface FixturesProps {
     setSeasonStats: (stats: SeasonStats) => void;
 }
 
-const Fixtures = ({
+const FixturesSimplified = ({
     url = "https://www.peisoccer.com/division/1387/31540/games",
     filter = "all", // Default to showing all fixtures
     cacheTimeInMinutes = 60, // Default to 1 hour cache
     setSeasonStats
 }: FixturesProps) => {
-    const dispatch = useAppDispatch();
     const { 
         filteredFixtures, 
         seasonStats, 
         isLoading, 
         error 
-    } = useAppSelector((state) => state.fixtures);
-
-    useEffect(() => {
-        // Dispatch the fetchFixtures action
-        dispatch(fetchFixtures({ url, cacheTimeInMinutes, filter }));
-    }, [dispatch, url, cacheTimeInMinutes, filter]);
+    } = useFixtures({ url, filter, cacheTimeInMinutes });
 
     useEffect(() => {
         // Update season stats whenever they change
         setSeasonStats(seasonStats);
     }, [seasonStats, setSeasonStats]);
-
-    useEffect(() => {
-        // Update filter when prop changes
-        dispatch(setFilter(filter));
-    }, [dispatch, filter]);
 
     if (isLoading) {
         return (
@@ -98,4 +86,4 @@ const Fixtures = ({
     )
 };
 
-export default Fixtures;
+export default FixturesSimplified;
