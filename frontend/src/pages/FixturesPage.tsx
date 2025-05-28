@@ -5,6 +5,14 @@ import Fixtures from '../components/Fixtures';
 
 const FixturesPage = () => {
   const [filter, setFilter] = useState<'all' | 'upcoming' | 'past'>('all');
+  const [seasonStats, setSeasonStats] = useState({
+    matchesPlayed: 0,
+    wins: 0,
+    losses: 0,
+    draws: 0,
+    cleanSheets: 0,
+    goalScored: 0
+  })
   
   return (
     <div>
@@ -25,26 +33,36 @@ const FixturesPage = () => {
       {/* Season Stats */}
       <section className="py-8 bg-white">
         <div className="container-custom">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             <div className="bg-young-everest-light p-4 rounded-lg text-center shadow-md relative overflow-hidden group">
               <div className="absolute bottom-0 right-0 w-0 h-0 border-b-16 border-r-16 border-young-everest-secondary border-opacity-10 transition-opacity duration-300 group-hover:border-opacity-20"></div>
-              <div className="text-3xl font-bold text-young-everest-primary mb-1">14</div>
+              <div className="text-3xl font-bold text-young-everest-primary mb-1">{seasonStats.matchesPlayed}</div>
               <div className="text-sm text-gray-600">Matches Played</div>
             </div>
             <div className="bg-young-everest-light p-4 rounded-lg text-center shadow-md relative overflow-hidden group">
               <div className="absolute bottom-0 right-0 w-0 h-0 border-b-16 border-r-16 border-young-everest-secondary border-opacity-10 transition-opacity duration-300 group-hover:border-opacity-20"></div>
-              <div className="text-3xl font-bold text-young-everest-primary mb-1">9</div>
+              <div className="text-3xl font-bold text-young-everest-primary mb-1">{seasonStats.wins}</div>
               <div className="text-sm text-gray-600">Wins</div>
             </div>
             <div className="bg-young-everest-light p-4 rounded-lg text-center shadow-md relative overflow-hidden group">
               <div className="absolute bottom-0 right-0 w-0 h-0 border-b-16 border-r-16 border-young-everest-secondary border-opacity-10 transition-opacity duration-300 group-hover:border-opacity-20"></div>
-              <div className="text-3xl font-bold text-young-everest-primary mb-1">3</div>
+              <div className="text-3xl font-bold text-young-everest-primary mb-1">{seasonStats.draws}</div>
               <div className="text-sm text-gray-600">Draws</div>
             </div>
             <div className="bg-young-everest-light p-4 rounded-lg text-center shadow-md relative overflow-hidden group">
               <div className="absolute bottom-0 right-0 w-0 h-0 border-b-16 border-r-16 border-young-everest-secondary border-opacity-10 transition-opacity duration-300 group-hover:border-opacity-20"></div>
-              <div className="text-3xl font-bold text-young-everest-primary mb-1">2</div>
+              <div className="text-3xl font-bold text-young-everest-primary mb-1">{seasonStats.losses}</div>
               <div className="text-sm text-gray-600">Losses</div>
+            </div>
+            <div className="bg-young-everest-light p-4 rounded-lg text-center shadow-md relative overflow-hidden group">
+              <div className="absolute bottom-0 right-0 w-0 h-0 border-b-16 border-r-16 border-young-everest-secondary border-opacity-10 transition-opacity duration-300 group-hover:border-opacity-20"></div>
+              <div className="text-3xl font-bold text-young-everest-primary mb-1">{seasonStats.cleanSheets}</div>
+              <div className="text-sm text-gray-600">Cleansheets</div>
+            </div>
+            <div className="bg-young-everest-light p-4 rounded-lg text-center shadow-md relative overflow-hidden group">
+              <div className="absolute bottom-0 right-0 w-0 h-0 border-b-16 border-r-16 border-young-everest-secondary border-opacity-10 transition-opacity duration-300 group-hover:border-opacity-20"></div>
+              <div className="text-3xl font-bold text-young-everest-primary mb-1">{seasonStats.goalScored}</div>
+              <div className="text-sm text-gray-600">Goals Scored</div>
             </div>
           </div>
         </div>
@@ -99,7 +117,8 @@ const FixturesPage = () => {
           <Fixtures 
             url="https://www.peisoccer.com/division/1387/31540/games" 
             filter={filter}
-            cacheTimeInMinutes={60} 
+            cacheTimeInMinutes={60}
+            setSeasonStats={setSeasonStats} 
           />
         </div>
       </section>
