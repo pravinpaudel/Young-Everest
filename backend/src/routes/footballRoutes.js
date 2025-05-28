@@ -5,9 +5,9 @@ const { testScrapeConfig } = require('../config/scrapeConfig');
 const router = express.Router();
 
 // Routes for football data
-router.post('/standings', footballController.getStandings);
-router.post('/fixtures', footballController.getFixtures);
-router.post('/stats', footballController.getTeamStats);
+router.get('/standings', footballController.getStandings);
+router.get('/fixtures', footballController.getFixtures);
+router.get('/stats', footballController.getTeamStats);
 router.post('/all', footballController.getAllData);
 router.post('/test', footballController.testScraping);
 router.get('/clear-cache/:dataType', footballController.clearCache);

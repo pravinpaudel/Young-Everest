@@ -2,80 +2,6 @@
  * Configuration for common football websites and their selectors
  * This will help make the scraper more flexible for different sites
  */
-
-// const scrapingConfig = {
-//   // Configuration for popular football statistics websites
-//   // These are example selectors - adjust based on actual target websites
-
-//   // Example config for a fictional football statistics site
-//   'https://www.peisoccer.com/division/1387/31540/standings': {
-//     standings: {
-//       tableSelector: '#tblStats',
-//       teamNameSelector: 'td[data-title="Team"] a', // finds a <td> (table cell) with the attribute data-title="GP".
-//       playedSelector: 'td[data-title="GP"]',
-//       winsSelector: 'td[data-title="W"]',
-//       drawsSelector: 'td[data-title="T"]',
-//       lossesSelector: 'td[data-title="L"]',
-//       goalsForSelector: 'td[data-title="GF"]',
-//       goalsAgainstSelector: 'td.goals-against',
-//       pointsSelector: 'td[data-title="GA"]'
-//     },
-//     fixtures: {
-//       fixtureSelector: '.fixture-list .fixture',
-//       dateSelector: '.fixture-date',
-//       timeSelector: '.fixture-time',
-//       homeTeamSelector: '.home-team',
-//       awayTeamSelector: '.away-team',
-//       venueSelector: '.venue',
-//       competitionSelector: '.competition',
-//       scoreSelector: '.score'
-//     },
-//     stats: {
-//       teamNameSelector: '.team-profile-header .team-name',
-//       teamLogoSelector: '.team-profile-header .team-logo img',
-//       statBlockSelector: '.team-stats .stat-item',
-//       statLabelSelector: '.stat-label',
-//       statValueSelector: '.stat-value',
-//       playerSelector: '.player-stats .player'
-//     }
-//   },
-
-//   // Configuration for another example site
-//   'soccerdata.example.org': {
-//     standings: {
-//       tableSelector: '.standings-table',
-//       rowSelector: '.team-standings-row',
-//       positionSelector: '.team-position',
-//       teamNameSelector: '.team-name',
-//       playedSelector: '.matches-played',
-//       winsSelector: '.matches-won',
-//       drawsSelector: '.matches-drawn',
-//       lossesSelector: '.matches-lost',
-//       goalsForSelector: '.goals-scored',
-//       goalsAgainstSelector: '.goals-conceded',
-//       pointsSelector: '.team-points'
-//     },
-//     fixtures: {
-//       fixtureSelector: '.match-card',
-//       dateSelector: '.match-date',
-//       timeSelector: '.match-time',
-//       homeTeamSelector: '.team-home',
-//       awayTeamSelector: '.team-away',
-//       venueSelector: '.match-venue',
-//       competitionSelector: '.match-competition',
-//       scoreSelector: '.match-score'
-//     },
-//     stats: {
-//       teamNameSelector: '.team-header-name',
-//       teamLogoSelector: '.team-header-logo img',
-//       statBlockSelector: '.team-stat-block',
-//       statLabelSelector: '.stat-name',
-//       statValueSelector: '.stat-value',
-//       playerSelector: '.player-stat-item'
-//     }
-//   }
-// };
-
 const scrapingConfig = {
   peiSoccer: {
     standings: {
@@ -103,7 +29,7 @@ const scrapingConfig = {
     },
     fixtures: {
       url: 'https://www.peisoccer.com/division/1387/31540/schedule',
-      selector: '.matches',
+      selector: 'body',
       interactions: [
         {
           type: 'select',
@@ -113,13 +39,11 @@ const scrapingConfig = {
         }
       ],
       selectors: {
-        fixtureSelector: '.match-item',
-        dateSelector: '.match-date',
-        timeSelector: '.match-time',
-        homeTeamSelector: '.team-home',
-        awayTeamSelector: '.team-away',
-        venueSelector: '.match-venue',
-        scoreSelector: '.match-score'
+        fixtureSelector: '#tblSchedule',
+        dateSelector: 'td[data-title="Date"]',
+        venueSelector: 'td[data-title="Location"] a',
+        homeTeamSelector: 'td[data-title="Home"] a',
+        awayTeamSelector: 'td[data-title="Visitor"] a',
       }
     }
   },
