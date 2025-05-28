@@ -27,9 +27,6 @@ const CACHE_DURATION = 6 * 60 * 60 * 1000;
  * @param {object} res - Express response object
  */
 async function getStandings(req, res) {
-  if(!req.body)
-    return res.status(400).json({ error: 'Request body is required' });
-
   try {
     // Check if we have valid cached data
     const now = Date.now();

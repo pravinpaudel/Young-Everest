@@ -1,13 +1,14 @@
 const express = require('express');
 const footballController = require('../controllers/footballController');
 const { testScrapeConfig } = require('../config/scrapeConfig');
+const requireBody = require('../middleware/requireBody');
 
 const router = express.Router();
 
 // Routes for football data
-router.get('/standings', footballController.getStandings);
-router.get('/fixtures', footballController.getFixtures);
-router.get('/stats', footballController.getTeamStats);
+router.get('/standings', requireBody, footballController.getStandings);
+router.get('/fixtures', requireBody, footballController.getFixtures);
+router.get('/stats', requireBody, footballController.getTeamStats);
 router.post('/all', footballController.getAllData);
 router.post('/test', footballController.testScraping);
 router.get('/clear-cache/:dataType', footballController.clearCache);
