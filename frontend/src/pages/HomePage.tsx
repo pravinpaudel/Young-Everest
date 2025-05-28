@@ -1,22 +1,35 @@
+import { useEffect } from 'react';
 import Hero from '../components/Hero';
 import SectionTitle from '../components/SectionTitle';
 import FixtureCard from '../components/FixtureCard';
 import NewsCard from '../components/NewsCard';
 import PlayerCard from '../components/PlayerCard';
-import { fixtures, news, players } from '../utils/mockData';
+import { news, players } from '../utils/mockData';
 import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
+import { fetchFixtures } from '../store/slices/fixturesSlice';
+import { selectUpcomingFixturesLimited, selectFixturesLoading } from '../store/selectors';
+import type { Fixture } from '../utils/footballService';
 
 const HomePage = () => {
-  // Get upcoming fixtures (max 3)
-  const upcomingFixtures = fixtures
-    .filter(fixture => !fixture.isCompleted)
-    .slice(0, 3);
+  const dispatch = useAppDispatch();
+  const upcomingFixtures = useAppSelector(selectUpcomingFixturesLimited(3));
+  const isLoadingFixtures = useAppSelector(selectFixturesLoading);
   
   // Get latest news (max 3)
   const latestNews = news.slice(0, 3);
   
   // Get featured players (4 players)
   const featuredPlayers = players.slice(0, 4);
+
+  // Fetch fixtures when component mounts
+  useEffect(() => {
+    dispatch(fetchFixtures({
+      url: "https://www.peisoccer.com/division/1387/31540/games",
+      cacheTimeInMinutes: 60,
+      filter: "upcoming"
+    }));
+  }, [dispatch]);
   
   return (
     <div>
@@ -32,18 +45,55 @@ const HomePage = () => {
           />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {upcomingFixtures.map(fixture => (
-              <FixtureCard 
-                key={fixture.id}
-                homeTeam={fixture.homeTeam}
-                awayTeam={fixture.awayTeam}
-                date={fixture.date}
-                time={fixture.time}
-                venue={fixture.venue}
-                competition={fixture.competition}
-                status="{fixture.isCompleted}"
-              />
-            ))}
+            {isLoadingFixtures ? (
+              // Loading skeleton for 3 fixture cards
+              Array(3).fill(0).map((_, index) => (
+                <div key={index} className="bg-white rounded-lg shadow-lg p-6 animate-pulse">
+                  <div className="h-4 bg-gray-200 rounded mb-4"></div>
+                  <div className="flex justify-between items-center mb-4">
+                    <div className="h-6 bg-gray-200 rounded w-24"></div>
+                    <div className="h-8 bg-gray-200 rounded w-16"></div>
+                    <div className="h-6 bg-gray-200 rounded w-24"></div>
+                  </div>
+                  <div className="h-4 bg-gray-200 rounded w-32 mx-auto"></div>
+                </div>
+              ))
+            ) : upcomingFixtures.length > 0 ? (
+              upcomingFixtures.map((fixture: Fixture, index: number) => {
+                const date = fixture.timestamp ? new Date(fixture.timestamp) : null;
+                const formattedDate = date ? date.toLocaleDateString('en-US', {
+                  weekday: 'short',
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                }) : undefined;
+
+                const formattedTime = date ? date.toLocaleTimeString('en-US', {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                }) : undefined;
+
+                return (
+                  <FixtureCard 
+                    key={index}
+                    homeTeam={fixture.homeTeam}
+                    awayTeam={fixture.awayTeam}
+                    date={formattedDate}
+                    time={formattedTime}
+                    venue={fixture.venue}
+                    competition={fixture.competition}
+                    homeScore={fixture.homeScore}
+                    awayScore={fixture.awayScore}
+                    status={fixture.status}
+                  />
+                );
+              })
+            ) : (
+              <div className="col-span-3 text-center py-8 text-gray-500">
+                <p className="text-lg mb-2">No upcoming fixtures scheduled</p>
+                <p className="text-sm">Check back later for new match announcements</p>
+              </div>
+            )}
           </div>
           
           <div className="mt-10 text-center">
