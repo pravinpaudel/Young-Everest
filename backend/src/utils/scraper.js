@@ -259,8 +259,8 @@ function extractStandings(html, selectors = {}) {
     drawsSelector = 'td[data-title="T"]',
     lossesSelector = 'td[data-title="L"]',
     goalsForSelector = 'td[data-title="GF"]',
-    goalsAgainstSelector = 'td.goals-against',
-    pointsSelector = 'td[data-title="GA"]'
+    goalsAgainstSelector = 'td[data-title="GA"]',
+    pointsSelector = 'td[data-title="PTS"]'
   } = selectors;
 
   // Track the current pool
