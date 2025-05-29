@@ -194,7 +194,7 @@ const TeamPage = () => {
       </section>
       
       {/* Team Philosophy */}
-      <section className="py-16 bg-young-everest-light hero-pattern">
+      {/* <section className="py-16 bg-young-everest-light hero-pattern">
         <div className="container-custom">
           <div className="bg-white rounded-lg shadow-md p-8 max-w-4xl mx-auto">
             <h3 className="text-2xl font-bold text-young-everest-primary mb-4">Our Playing Philosophy</h3>
@@ -220,7 +220,7 @@ const TeamPage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

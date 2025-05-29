@@ -25,7 +25,7 @@ const Navbar = () => {
       <div className="container-custom py-2">
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center space-x-3">
-            <img src="/src/assets/images/Logo.png" alt="Young Everest FC Logo" className="h-12 w-auto" />
+            <img src="/src/assets/images/Logo.png" alt="Young Everest FC Logo" className="h-12 w-auto bg-gray-100" />
             <span className="font-display text-xl md:text-2xl font-bold text-young-everest-secondary">
               YOUNG EVEREST FC
             </span>

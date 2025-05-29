@@ -6,9 +6,15 @@ const requireBody = require('../middleware/requireBody');
 const router = express.Router();
 
 // Routes for football data
+<<<<<<< HEAD
 router.get('/standings', requireBody, footballController.getStandings);
 router.get('/fixtures', requireBody, footballController.getFixtures);
 router.get('/stats', requireBody, footballController.getTeamStats);
+=======
+router.post('/standings', footballController.getStandings);
+router.post('/fixtures', footballController.getFixtures);
+router.post('/stats', footballController.getTeamStats);
+>>>>>>> working
 router.post('/all', footballController.getAllData);
 router.post('/test', footballController.testScraping);
 router.get('/clear-cache/:dataType', footballController.clearCache);

@@ -1,18 +1,18 @@
 /**
  * Service for interacting with the football data API
  */
-import axios from 'axios';
+import axios from "axios";
 
 // Base URL for the API
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || "/api";
 
 // Create an axios instance
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
   timeout: 30000,
   headers: {
-    'Content-Type': 'application/json',
-  }
+    "Content-Type": "application/json",
+  },
 });
 
 /**
@@ -20,7 +20,7 @@ const apiClient = axios.create({
  */
 
 export interface TeamStanding {
-  position: string;
+  position?: string;
   name: string;
   played: number;
   wins: number;
@@ -33,15 +33,14 @@ export interface TeamStanding {
 }
 
 export interface Fixture {
-  date: string;
-  time: string;
   homeTeam: string;
   awayTeam: string;
+  homeScore: number | null;
+  awayScore: number | null;
   venue: string;
-  competition: string;
-  score: string;
+  competition: "League" | "Cup" | "Friendly";
   timestamp: number | null;
-  status: 'upcoming' | 'live' | 'completed' | 'unknown';
+  status: "upcoming" | "completed" | "unknown";
 }
 
 export interface PlayerStat {
@@ -106,12 +105,19 @@ export interface ScraperSelectors {
  * @param url - URL to scrape for standings data
  * @param selectors - Optional selectors configuration
  */
-export const getStandings = async (url: string, selectors?: ScraperSelectors['standings']): Promise<TeamStanding[]> => {
+export const getStandings = async (
+  url: string,
+  selectors?: ScraperSelectors["standings"]
+): Promise<TeamStanding[]> => {
   try {
-    const response = await apiClient.post('/football/standings', { url, selectors });
+    // This is a URL for scraping
+    const response = await apiClient.post("/football/standings", {
+      url,
+      selectors,
+    });
     return response.data.data;
   } catch (error) {
-    console.error('Error fetching standings:', error);
+    console.error("Error fetching standings:", error);
     throw error;
   }
 };
@@ -121,12 +127,18 @@ export const getStandings = async (url: string, selectors?: ScraperSelectors['st
  * @param url - URL to scrape for fixtures data
  * @param selectors - Optional selectors configuration
  */
-export const getFixtures = async (url: string, selectors?: ScraperSelectors['fixtures']): Promise<Fixture[]> => {
+export const getFixtures = async (
+  url: string,
+  selectors?: ScraperSelectors["fixtures"]
+): Promise<Fixture[]> => {
   try {
-    const response = await apiClient.post('/football/fixtures', { url, selectors });
+    const response = await apiClient.post("/football/fixtures", {
+      url,
+      selectors,
+    });
     return response.data.data;
   } catch (error) {
-    console.error('Error fetching fixtures:', error);
+    console.error("Error fetching fixtures:", error);
     throw error;
   }
 };
@@ -136,12 +148,18 @@ export const getFixtures = async (url: string, selectors?: ScraperSelectors['fix
  * @param url - URL to scrape for team stats data
  * @param selectors - Optional selectors configuration
  */
-export const getTeamStats = async (url: string, selectors?: ScraperSelectors['stats']): Promise<TeamStats> => {
+export const getTeamStats = async (
+  url: string,
+  selectors?: ScraperSelectors["stats"]
+): Promise<TeamStats> => {
   try {
-    const response = await apiClient.post('/football/stats', { url, selectors });
+    const response = await apiClient.post("/football/stats", {
+      url,
+      selectors,
+    });
     return response.data.data;
   } catch (error) {
-    console.error('Error fetching team stats:', error);
+    console.error("Error fetching team stats:", error);
     throw error;
   }
 };
@@ -160,13 +178,13 @@ export const getAllFootballData = async (
   selectors?: ScraperSelectors
 ): Promise<FootballData> => {
   try {
-    const response = await apiClient.post('/football/all', {
+    const response = await apiClient.post("/football/all", {
       ...urls,
-      selectors
+      selectors,
     });
     return response.data;
   } catch (error) {
-    console.error('Error fetching all football data:', error);
+    console.error("Error fetching all football data:", error);
     throw error;
   }
 };
@@ -175,12 +193,14 @@ export const getAllFootballData = async (
  * Clear the backend cache to force fresh data fetch
  * @param dataType - Type of data to clear from cache ('standings', 'fixtures', 'stats', or 'all')
  */
-export const clearCache = async (dataType: 'standings' | 'fixtures' | 'stats' | 'all'): Promise<{ message: string }> => {
+export const clearCache = async (
+  dataType: "standings" | "fixtures" | "stats" | "all"
+): Promise<{ message: string }> => {
   try {
     const response = await apiClient.get(`/football/clear-cache/${dataType}`);
     return response.data;
   } catch (error) {
-    console.error('Error clearing cache:', error);
+    console.error("Error clearing cache:", error);
     throw error;
   }
 };
@@ -194,18 +214,18 @@ export const testScraping = async (
   options: {
     selector?: string;
     waitTime?: number;
-    type?: 'standings' | 'fixtures' | 'stats';
+    type?: "standings" | "fixtures" | "stats";
     selectors?: ScraperSelectors;
   }
 ): Promise<any> => {
   try {
-    const response = await apiClient.post('/football/test', {
+    const response = await apiClient.post("/football/test", {
       url,
-      ...options
+      ...options,
     });
     return response.data;
   } catch (error) {
-    console.error('Error in test scraping:', error);
+    console.error("Error in test scraping:", error);
     throw error;
   }
 };
@@ -217,7 +237,7 @@ const footballService = {
   getTeamStats,
   getAllFootballData,
   clearCache,
-  testScraping
+  testScraping,
 };
 
 export default footballService;

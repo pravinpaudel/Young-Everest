@@ -9,7 +9,7 @@ const Hero = () => {
         <img 
           src={heroImage} 
           alt="Mount Everest" 
-          className="w-full h-full object-cover opacity-100"
+          className="w-full h-full object-cover opacity-70"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-young-everest-dark to-young-everest-primary opacity-70"></div>
       </div>
@@ -55,12 +55,14 @@ const Hero = () => {
               </Link>
             </div>
           </div>
+          
+          {/* Logo section with floating animation */}
           <div className="flex justify-center">
-            <div className="w-full max-w-md h-80 md:h-96 bg-young-everest-dark bg-opacity-50 rounded-lg relative overflow-hidden border-2 border-young-everest-secondary shadow-2xl">
+            <div className="w-full max-w-md h-80 md:h-96  bg-opacity-50 rounded-lg relative overflow-hidden  border-young-everest-secondary shadow-2xl"> {/* bg-young-everest-dark border-2*/}
               <img 
                 src="/src/assets/images/Logo.png" 
                 alt="Young Everest FC Logo" 
-                className="absolute inset-0 m-auto h-3/4 w-auto object-contain z-10 float-animation"
+                className="absolute inset-0 m-auto h-3/4 w-auto object-contain z-10 float-animation bg-gray-100 rounded-lg "
               />
             </div>
           </div>

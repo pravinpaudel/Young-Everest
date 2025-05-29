@@ -1,13 +1,13 @@
 type FixtureCardProps = {
   homeTeam: string;
   awayTeam: string;
-  date: string;
-  time: string;
+  date?: string;
+  time?: string;
   venue: string;
   competition: string;
-  homeScore?: number;
-  awayScore?: number;
-  isCompleted?: boolean;
+  homeScore?: number | null;
+  awayScore?: number | null;
+  status: string;
 };
 
 const FixtureCard = ({
@@ -19,7 +19,7 @@ const FixtureCard = ({
   competition,
   homeScore,
   awayScore,
-  isCompleted = false,
+  status,
 }: FixtureCardProps) => {
   const isYoungEverestHome = homeTeam === 'Young Everest FC';
   
@@ -40,7 +40,7 @@ const FixtureCard = ({
             </div>
           </div>
           
-          {isCompleted ? (
+          {status === "completed" ? (
             <div className="flex items-center justify-center mx-4 bg-white bg-opacity-60 px-3 py-1 rounded-full shadow-sm">
               <span className="text-2xl font-bold text-gray-800">{homeScore}</span>
               <span className="mx-2 text-gray-400">-</span>
@@ -84,7 +84,7 @@ const FixtureCard = ({
         </div>
       </div>
       
-      {isCompleted && (
+      {status === "completed" && (
         <div className="px-4 pb-4">
           <button className="text-young-everest-primary text-sm font-medium hover:underline flex items-center">
             <span className="mr-1">📋</span> View Match Report
@@ -92,7 +92,7 @@ const FixtureCard = ({
         </div>
       )}
       
-      {!isCompleted && (
+      {!status && (
         <div className="w-full h-1 bg-gradient-to-r from-young-everest-primary via-young-everest-secondary to-young-everest-primary"></div>
       )}
     </div>
