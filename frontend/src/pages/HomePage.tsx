@@ -19,8 +19,10 @@ const HomePage = () => {
   // Get latest news (max 3)
   const latestNews = news.slice(0, 3);
   
-  // Get featured players (4 players)
-  const featuredPlayers = players.slice(0, 4);
+  // Get featured players (4 players) 
+  // Shuffle players and take the first 4 for featured section
+  const featuredPlayers = players.sort(() => Math.random() - 0.5).slice(0, 4);
+
 
   // Fetch fixtures when component mounts
   useEffect(() => {

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { fetchFixtures, setFilter } from "../store/slices/fixturesSlice";
 import type { SeasonStats } from "../store/slices/fixturesSlice";

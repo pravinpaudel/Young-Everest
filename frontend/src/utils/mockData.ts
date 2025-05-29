@@ -9,18 +9,18 @@ export interface Player {
   };
 }
 
-export interface Fixture {
-  id: number;
-  homeTeam: string;
-  awayTeam: string;
-  date: string;
-  time: string;
-  venue: string;
-  competition: string;
-  homeScore?: number;
-  awayScore?: number;
-  isCompleted: boolean;
-}
+// export interface Fixture {
+//   id: number;
+//   homeTeam: string;
+//   awayTeam: string;
+//   date: string;
+//   time: string;
+//   venue: string;
+//   competition: string;
+//   homeScore?: number;
+//   awayScore?: number;
+//   isCompleted: boolean;
+// }
 
 export interface NewsItem {
   id: number;
@@ -125,63 +125,63 @@ export const players: Player[] = [
   },
 ];
 
-// Mock Fixtures Data
-export const fixtures: Fixture[] = [
-  {
-    id: 1,
-    homeTeam: 'Young Everest FC',
-    awayTeam: 'Mountain Lions',
-    date: 'May 15, 2025',
-    time: '15:00',
-    venue: 'Green Valley Stadium',
-    competition: 'Regional League',
-    homeScore: 3,
-    awayScore: 1,
-    isCompleted: true
-  },
-  {
-    id: 2,
-    homeTeam: 'River City FC',
-    awayTeam: 'Young Everest FC',
-    date: 'May 22, 2025',
-    time: '19:30',
-    venue: 'River City Arena',
-    competition: 'Regional League',
-    homeScore: 0,
-    awayScore: 2,
-    isCompleted: true
-  },
-  {
-    id: 3,
-    homeTeam: 'Young Everest FC',
-    awayTeam: 'Forest Rangers',
-    date: 'May 29, 2025',
-    time: '16:00',
-    venue: 'Green Valley Stadium',
-    competition: 'Regional League',
-    isCompleted: false
-  },
-  {
-    id: 4,
-    homeTeam: 'Coastal United',
-    awayTeam: 'Young Everest FC',
-    date: 'June 5, 2025',
-    time: '20:00',
-    venue: 'Seaside Stadium',
-    competition: 'Cup Quarter-Final',
-    isCompleted: false
-  },
-  {
-    id: 5,
-    homeTeam: 'Young Everest FC',
-    awayTeam: 'Metro Stars',
-    date: 'June 12, 2025',
-    time: '16:00',
-    venue: 'Green Valley Stadium',
-    competition: 'Regional League',
-    isCompleted: false
-  },
-];
+// // Mock Fixtures Data
+// export const fixtures: Fixture[] = [
+//   {
+//     id: 1,
+//     homeTeam: 'Young Everest FC',
+//     awayTeam: 'Mountain Lions',
+//     date: 'May 15, 2025',
+//     time: '15:00',
+//     venue: 'Green Valley Stadium',
+//     competition: 'Regional League',
+//     homeScore: 3,
+//     awayScore: 1,
+//     isCompleted: true
+//   },
+//   {
+//     id: 2,
+//     homeTeam: 'River City FC',
+//     awayTeam: 'Young Everest FC',
+//     date: 'May 22, 2025',
+//     time: '19:30',
+//     venue: 'River City Arena',
+//     competition: 'Regional League',
+//     homeScore: 0,
+//     awayScore: 2,
+//     isCompleted: true
+//   },
+//   {
+//     id: 3,
+//     homeTeam: 'Young Everest FC',
+//     awayTeam: 'Forest Rangers',
+//     date: 'May 29, 2025',
+//     time: '16:00',
+//     venue: 'Green Valley Stadium',
+//     competition: 'Regional League',
+//     isCompleted: false
+//   },
+//   {
+//     id: 4,
+//     homeTeam: 'Coastal United',
+//     awayTeam: 'Young Everest FC',
+//     date: 'June 5, 2025',
+//     time: '20:00',
+//     venue: 'Seaside Stadium',
+//     competition: 'Cup Quarter-Final',
+//     isCompleted: false
+//   },
+//   {
+//     id: 5,
+//     homeTeam: 'Young Everest FC',
+//     awayTeam: 'Metro Stars',
+//     date: 'June 12, 2025',
+//     time: '16:00',
+//     venue: 'Green Valley Stadium',
+//     competition: 'Regional League',
+//     isCompleted: false
+//   },
+// ];
 
 // Mock News Data
 export const news: NewsItem[] = [

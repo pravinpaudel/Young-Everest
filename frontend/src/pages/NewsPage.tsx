@@ -121,7 +121,7 @@ const NewsPage = () => {
               <input
                 type="email"
                 placeholder="Your email address"
-                className="flex-grow px-4 py-3 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-young-everest-secondary"
+                className="flex-grow px-4 py-3 rounded-md text-gray-900 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-young-everest-secondary"
                 required
               />
               <button
