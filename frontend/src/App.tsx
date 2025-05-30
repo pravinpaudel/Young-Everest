@@ -8,21 +8,25 @@ import FixturesPage from './pages/FixturesPage'
 import NewsPage from './pages/NewsPage'
 import ContactPage from './pages/ContactPage'
 import NotFoundPage from './pages/NotFoundPage'
+import ScrollToTop from './components/ScrollToTop'
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="min-h-screen flex flex-col">
         <Navbar />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/team" element={<TeamPage />} />
-            <Route path="/fixtures" element={<FixturesPage />} />
-            <Route path="/news" element={<NewsPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
+        <main className="flex-grow relative mb-10">
+          <div className="relative">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/team" element={<TeamPage />} />
+              <Route path="/fixtures" element={<FixturesPage />} />
+              <Route path="/news" element={<NewsPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </div>
         </main>
         <Footer />
       </div>

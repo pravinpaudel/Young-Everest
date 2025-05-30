@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap');
 
-/* Base Styles */
+/***************************************
+ * Base Styles
+ ***************************************/
 :root {
   font-family: 'Inter', system-ui, sans-serif;
   line-height: 1.5;
@@ -16,9 +18,23 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
+html, body {
   margin: 0;
+  padding: 0;
+  min-height: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body {
   min-height: 100vh;
+  overflow-y: auto;
+  /* Prevent overscroll bounce effect while still allowing normal scrolling */
+  overscroll-behavior-y: contain;
+}
+
+body.no-scroll {
+  overflow: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -26,7 +42,44 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
 
-/* Component Styles */
+#root {
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-y: auto; /* Allow vertical scrolling */
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 10;
+  overflow: visible;
+}
+
+section {
+  position: relative;
+  z-index: 1;
+}
+
+section:last-of-type {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+footer {
+  margin-top: auto;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  z-index: 5;
+}
+
+/***************************************
+ * Background Patterns & Effects
+ ***************************************/
 .hero-pattern {
   background-color: rgba(33, 70, 98, 0.05);
   background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23214662' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
@@ -38,6 +91,7 @@ h1, h2, h3, h4, h5, h6 {
   background-repeat: repeat-x;
   background-position: bottom;
   background-size: 300px;
+  background-attachment: scroll;
 }
 
 .snow-overlay {
@@ -60,18 +114,31 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(180deg, #f5f7fa 0%, #c9dbe5 100%);
 }
 
+/***************************************
+ * Button Styles
+ ***************************************/
 .btn-primary {
   background-color: #214662;
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 0.375rem;
-  transition-property: background-color;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(33, 70, 98, 0.1), 0 2px 4px -1px rgba(33, 70, 98, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1;
 }
 
 .btn-primary:hover {
   background-color: #0c2231;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(33, 70, 98, 0.1), 0 4px 6px -2px rgba(33, 70, 98, 0.05);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 6px -1px rgba(33, 70, 98, 0.1), 0 2px 4px -1px rgba(33, 70, 98, 0.06);
 }
 
 .btn-secondary {
@@ -79,15 +146,28 @@ h1, h2, h3, h4, h5, h6 {
   color: #0c2231;
   padding: 0.5rem 1rem;
   border-radius: 0.375rem;
-  transition-property: filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  box-shadow: 0 4px 6px -1px rgba(232, 149, 47, 0.2), 0 2px 4px -1px rgba(232, 149, 47, 0.1);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
 
 .btn-secondary:hover {
   background-color: #d88722;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(232, 149, 47, 0.2), 0 4px 6px -2px rgba(232, 149, 47, 0.1);
 }
 
+.btn-secondary:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 6px -1px rgba(232, 149, 47, 0.2), 0 2px 4px -1px rgba(232, 149, 47, 0.1);
+}
+
+/***************************************
+ * Container & Layout
+ ***************************************/
 .container-custom {
   width: 100%;
   max-width: 1280px;
@@ -111,6 +191,9 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/***************************************
+ * Animations
+ ***************************************/
 /* Mountain Path Animation */
 .mountain-path {
   position: relative;
@@ -196,6 +279,270 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Enhanced Snowfall Effect */
+.snowflakes-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none !important;
+  z-index: 2 !important;
+  bottom: 0;
+  right: 0;
+}
+
+.snowflake {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: snowfall-3d 8s linear infinite;
+  filter: blur(1px);
+  z-index: 2 !important;
+}
+
+@keyframes snowfall-3d {
+  0% {
+    transform: translateY(-100px) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(100%) translateX(20px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Misty Mountain Animations */
+.mist-layer {
+  position: absolute;
+  height: 100%;
+  width: 200%;
+  background-image: 
+    linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+  opacity: 0.2;
+  pointer-events: none !important;
+  overflow: hidden;
+  z-index: 1 !important;
+}
+
+.mist-1 {
+  top: 20%;
+  animation: mistMovement 60s linear infinite;
+}
+
+.mist-2 {
+  top: 40%;
+  animation: mistMovement 45s linear infinite;
+  animation-delay: 5s;
+}
+
+.mist-3 {
+  top: 60%;
+  animation: mistMovement 30s linear infinite;
+  animation-delay: 10s;
+}
+
+@keyframes mistMovement {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Mountain Silhouette */
+.mountain-silhouette {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 300'%3E%3Cpath fill='%23ffffff' d='M0,300 L200,100 L275,200 L350,50 L425,150 L500,25 L575,150 L650,75 L725,200 L800,100 L1000,300 Z'/%3E%3C/svg%3E");
+}
+
+/* Scroll Down Animation */
+@keyframes scrollDown {
+  0% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+}
+
+.animate-scrollDown {
+  animation: scrollDown 1.5s ease-in-out infinite;
+}
+
+/***************************************
+ * Utility Classes
+ ***************************************/
+/* 3D Perspective Effect */
+.perspective-effect {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 0.5s ease;
+}
+
+.perspective-effect:hover {
+  transform: rotateY(10deg) rotateX(5deg);
+}
+
+/* Float Animation */
+.float-animation {
+  animation: floating 4s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Pulse animation for interactive elements */
+.pulse-animation {
+  animation: pulse 2s infinite;
+  box-shadow: 0 0 0 rgba(232, 149, 47, 0.6);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(232, 149, 47, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(232, 149, 47, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(232, 149, 47, 0);
+  }
+}
+
+/***************************************
+ * Timeline & Fixtures
+ ***************************************/
+/* Timeline animations */
+.timeline-content {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.timeline-content.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animate timeline items on scroll */
+@media (prefers-reduced-motion: no-preference) {
+  .timeline-item:nth-child(odd) .timeline-content {
+    animation: fadeInLeft 0.8s 0.2s forwards;
+  }
+  
+  .timeline-item:nth-child(even) .timeline-content {
+    animation: fadeInRight 0.8s 0.4s forwards;
+  }
+}
+
+/* Timeline styling */
+.timeline-item {
+  position: relative;
+}
+
+.timeline-marker {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #e8952f;
+  border: 4px solid #fff;
+  box-shadow: 0 0 0 3px rgba(232, 149, 47, 0.2);
+  z-index: 10;
+}
+
+.timeline-right .timeline-marker {
+  left: -12px;
+  top: 20px;
+}
+
+.timeline-left .timeline-marker {
+  right: -12px;
+  top: 20px;
+}
+
+@media (max-width: 1023px) {
+  .timeline-right .timeline-marker,
+  .timeline-left .timeline-marker {
+    left: 50%;
+    transform: translateX(-50%);
+    top: -12px;
+  }
+}
+
+/* Fixture checkpoints on trail */
+.fixture-checkpoint {
+  flex: 1;
+  position: relative;
+  z-index: 15;
+}
+
+@media (max-width: 1023px) {
+  .fixture-checkpoint::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -24px;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 24px;
+    background-color: #214662;
+    z-index: 5;
+  }
+  
+  .fixture-checkpoint:first-child::before {
+    display: none;
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 /* Mountain Peak Accent */
 .border-r-16 {
   border-right-width: 16px;
@@ -213,6 +560,9 @@ h1, h2, h3, h4, h5, h6 {
   border-left-width: 16px;
 }
 
+/***************************************
+ * Tailwind Components (if using Tailwind)
+ ***************************************/
 @layer components {
   .hero-pattern {
     background-color: rgba(33, 70, 98, 0.05);
