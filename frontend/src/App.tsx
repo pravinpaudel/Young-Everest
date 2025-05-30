@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
-import './index.css.fixes.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import HomePage from './pages/HomePage'
@@ -17,7 +16,7 @@ function App() {
       <ScrollToTop />
       <div className="min-h-screen flex flex-col">
         <Navbar />
-        <main className="flex-grow relative mb-20">
+        <main className="flex-grow relative mb-10">
           <div className="relative">
             <Routes>
               <Route path="/" element={<HomePage />} />

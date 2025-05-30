@@ -132,7 +132,7 @@ const NewsPage = () => {
               </button>
             </form>
             
-            <p className="text-sm mt-4 text-young-everest-light">
+            <p className="text-sm mt-4 text-young-everest-light pb-10">
               We respect your privacy. Unsubscribe at any time.
             </p>
           </div>

@@ -15,17 +15,17 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-young-everest-dark text-white pt-12 pb-6 relative z-50">
+    <footer className="bg-young-everest-dark text-white pt-12 pb-6 relative z-50 overflow-hidden">
       {/* Enhanced mountain silhouette */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-young-everest-dark mountain-pattern opacity-30" aria-hidden="true"></div>
       
-      {/* Misty overlay - with fixed position issues */}
-      <div className="absolute inset-0 pointer-events-none">
+      {/* Misty overlay - contained within footer */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="mist-layer mist-1"></div>
         <div className="mist-layer mist-2"></div>
       </div>
       
-      {/* Snowfall effect - reduced for performance */}
+      {/* Snowfall effect - contained within footer */}
       <div className="snowflakes-container">
         {[...Array(6)].map((_, i) => (
           <div key={i} className="snowflake" style={{

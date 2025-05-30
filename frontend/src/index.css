@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap');
 
-/* Base Styles */
+/***************************************
+ * Base Styles
+ ***************************************/
 :root {
   font-family: 'Inter', system-ui, sans-serif;
   line-height: 1.5;
@@ -16,9 +18,23 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
+html, body {
   margin: 0;
+  padding: 0;
+  min-height: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body {
   min-height: 100vh;
+  overflow-y: auto;
+  /* Prevent overscroll bounce effect while still allowing normal scrolling */
+  overscroll-behavior-y: contain;
+}
+
+body.no-scroll {
+  overflow: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -26,7 +42,44 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
 
-/* Component Styles */
+#root {
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-y: auto; /* Allow vertical scrolling */
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 10;
+  overflow: visible;
+}
+
+section {
+  position: relative;
+  z-index: 1;
+}
+
+section:last-of-type {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+footer {
+  margin-top: auto;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  z-index: 5;
+}
+
+/***************************************
+ * Background Patterns & Effects
+ ***************************************/
 .hero-pattern {
   background-color: rgba(33, 70, 98, 0.05);
   background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23214662' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
@@ -38,6 +91,7 @@ h1, h2, h3, h4, h5, h6 {
   background-repeat: repeat-x;
   background-position: bottom;
   background-size: 300px;
+  background-attachment: scroll;
 }
 
 .snow-overlay {
@@ -60,6 +114,9 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(180deg, #f5f7fa 0%, #c9dbe5 100%);
 }
 
+/***************************************
+ * Button Styles
+ ***************************************/
 .btn-primary {
   background-color: #214662;
   color: white;
@@ -108,6 +165,9 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 4px 6px -1px rgba(232, 149, 47, 0.2), 0 2px 4px -1px rgba(232, 149, 47, 0.1);
 }
 
+/***************************************
+ * Container & Layout
+ ***************************************/
 .container-custom {
   width: 100%;
   max-width: 1280px;
@@ -131,6 +191,9 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/***************************************
+ * Animations
+ ***************************************/
 /* Mountain Path Animation */
 .mountain-path {
   position: relative;
@@ -224,8 +287,10 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   left: 0;
   overflow: hidden;
-  pointer-events: none;
-  z-index: 2;
+  pointer-events: none !important;
+  z-index: 2 !important;
+  bottom: 0;
+  right: 0;
 }
 
 .snowflake {
@@ -237,6 +302,7 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0.8;
   animation: snowfall-3d 8s linear infinite;
   filter: blur(1px);
+  z-index: 2 !important;
 }
 
 @keyframes snowfall-3d {
@@ -251,7 +317,7 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 0.8;
   }
   100% {
-    transform: translateY(100vh) translateX(20px) rotate(360deg);
+    transform: translateY(100%) translateX(20px) rotate(360deg);
     opacity: 0;
   }
 }
@@ -264,8 +330,9 @@ h1, h2, h3, h4, h5, h6 {
   background-image: 
     linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
   opacity: 0.2;
-  pointer-events: none;
+  pointer-events: none !important;
   overflow: hidden;
+  z-index: 1 !important;
 }
 
 .mist-1 {
@@ -319,6 +386,9 @@ h1, h2, h3, h4, h5, h6 {
   animation: scrollDown 1.5s ease-in-out infinite;
 }
 
+/***************************************
+ * Utility Classes
+ ***************************************/
 /* 3D Perspective Effect */
 .perspective-effect {
   transform-style: preserve-3d;
@@ -365,6 +435,9 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/***************************************
+ * Timeline & Fixtures
+ ***************************************/
 /* Timeline animations */
 .timeline-content {
   opacity: 0;
@@ -487,6 +560,9 @@ h1, h2, h3, h4, h5, h6 {
   border-left-width: 16px;
 }
 
+/***************************************
+ * Tailwind Components (if using Tailwind)
+ ***************************************/
 @layer components {
   .hero-pattern {
     background-color: rgba(33, 70, 98, 0.05);

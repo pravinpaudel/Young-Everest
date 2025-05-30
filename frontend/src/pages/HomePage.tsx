@@ -12,6 +12,7 @@ import {
 } from "../store/selectors";
 import type { Fixture } from "../utils/footballService";
 import NewsCard from "../components/NewsCard";
+import PlayerCard from "../components/PlayerCard";
 
 const HomePage = () => {
   // Force scroll to top when component mounts
@@ -287,7 +288,7 @@ const HomePage = () => {
                 })
               ) : (
                 <div className="col-span-3 text-center py-8 text-gray-500 w-full">
-                  <div className="bg-young-everest-ice/30 rounded-lg p-8 max-w-md mx-auto">
+                  <div className="bg-young-everest-ice/90 rounded-lg p-8 max-w-md mx-auto">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -370,127 +371,136 @@ const HomePage = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
             {featuredPlayers.map((player) => (
-              <div
-                key={player.id}
-                className="player-card-wrapper transform transition-all duration-500 hover:translate-y-[-10px]"
-              >
-                <div className="bg-white rounded-lg overflow-hidden shadow-xl player-card relative">
-                  {/* Mountain overlay for player image */}
-                  <div className="relative h-60 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-t from-young-everest-primary/90 to-transparent z-10"></div>
-                    <div className="absolute bottom-0 left-0 right-0 z-20 mountain-silhouette h-24 opacity-30"></div>
+              <PlayerCard 
+                  key={player.id}
+                  name={player.name}
+                  position={player.position}
+                  number={player.number}
+                  image={player.image}
+                  stats={player.stats}
+                />
 
-                    {/* Player image */}
-                    <img
-                      src={
-                        player.image ||
-                        "https://via.placeholder.com/300x400?text=Player"
-                      }
-                      alt={player.name}
-                      className="w-full h-full object-cover"
-                    />
+              // <div
+              //   key={player.id}
+              //   className="player-card-wrapper transform transition-all duration-500 hover:translate-y-[-10px]"
+              // >
+              //   <div className="bg-white rounded-lg overflow-hidden shadow-xl player-card relative">
+              //     {/* Mountain overlay for player image */}
+              //     <div className="relative h-60 overflow-hidden">
+              //       <div className="absolute inset-0 bg-gradient-to-t from-young-everest-primary/90 to-transparent z-10"></div>
+              //       <div className="absolute bottom-0 left-0 right-0 z-20 mountain-silhouette h-24 opacity-30"></div>
 
-                    {/* Player number */}
-                    <div className="absolute top-3 right-3 bg-young-everest-secondary text-young-everest-dark rounded-full w-10 h-10 flex items-center justify-center font-bold text-xl z-20">
-                      {player.number}
-                    </div>
-                  </div>
+              //       {/* Player image */}
+              //       <img
+              //         src={
+              //           player.image ||
+              //           "https://via.placeholder.com/300x400?text=Player"
+              //         }
+              //         alt={player.name}
+              //         className="w-full h-full object-cover"
+              //       />
 
-                  <div className="p-5">
-                    <h3 className="text-xl font-bold text-young-everest-primary">
-                      {player.name}
-                    </h3>
-                    <p className="text-young-everest-secondary font-semibold mb-3">
-                      {player.position}
-                    </p>
+              //       {/* Player number */}
+              //       <div className="absolute top-3 right-3 bg-young-everest-secondary text-young-everest-dark rounded-full w-10 h-10 flex items-center justify-center font-bold text-xl z-20">
+              //         {player.number}
+              //       </div>
+              //     </div>
 
-                    {/* Sherpa-inspired resilience meter */}
-                    <div className="mt-4">
-                      <h4 className="text-sm font-bold text-gray-600 mb-2">
-                        MOUNTAINEER ATTRIBUTES
-                      </h4>
-                      <div className="space-y-2">
-                        {/* Calculate random values for attributes */}
-                        {(() => {
-                          const endurance =
-                            player.stats?.stamina ||
-                            Math.floor(Math.random() * 30) + 70;
-                          const leadership =
-                            player.stats?.leadership ||
-                            Math.floor(Math.random() * 40) + 60;
-                          const agility =
-                            player.stats?.agility ||
-                            Math.floor(Math.random() * 30) + 70;
+              //     <div className="p-5">
+              //       <h3 className="text-xl font-bold text-young-everest-primary">
+              //         {player.name}
+              //       </h3>
+              //       <p className="text-young-everest-secondary font-semibold mb-3">
+              //         {player.position}
+              //       </p>
 
-                          return (
-                            <>
-                              <div>
-                                <div className="flex justify-between text-xs mb-1">
-                                  <span>Endurance</span>
-                                  <span>{endurance}/100</span>
-                                </div>
-                                <div className="w-full bg-gray-200 rounded-full h-2">
-                                  <div
-                                    className="bg-young-everest-primary h-2 rounded-full"
-                                    style={{ width: `${endurance}%` }}
-                                  ></div>
-                                </div>
-                              </div>
+              //       {/* Sherpa-inspired resilience meter */}
+              //       <div className="mt-4">
+              //         <h4 className="text-sm font-bold text-gray-600 mb-2">
+              //           MOUNTAINEER ATTRIBUTES
+              //         </h4>
+              //         <div className="space-y-2">
+              //           {/* Calculate random values for attributes */}
+              //           {(() => {
+              //             const endurance =
+              //               player.stats?.stamina ||
+              //               Math.floor(Math.random() * 30) + 70;
+              //             const leadership =
+              //               player.stats?.leadership ||
+              //               Math.floor(Math.random() * 40) + 60;
+              //             const agility =
+              //               player.stats?.agility ||
+              //               Math.floor(Math.random() * 30) + 70;
 
-                              <div>
-                                <div className="flex justify-between text-xs mb-1">
-                                  <span>Leadership</span>
-                                  <span>{leadership}/100</span>
-                                </div>
-                                <div className="w-full bg-gray-200 rounded-full h-2">
-                                  <div
-                                    className="bg-young-everest-secondary h-2 rounded-full"
-                                    style={{ width: `${leadership}%` }}
-                                  ></div>
-                                </div>
-                              </div>
+              //             return (
+              //               <>
+              //                 <div>
+              //                   <div className="flex justify-between text-xs mb-1">
+              //                     <span>Endurance</span>
+              //                     <span>{endurance}/100</span>
+              //                   </div>
+              //                   <div className="w-full bg-gray-200 rounded-full h-2">
+              //                     <div
+              //                       className="bg-young-everest-primary h-2 rounded-full"
+              //                       style={{ width: `${endurance}%` }}
+              //                     ></div>
+              //                   </div>
+              //                 </div>
 
-                              <div>
-                                <div className="flex justify-between text-xs mb-1">
-                                  <span>Agility</span>
-                                  <span>{agility}/100</span>
-                                </div>
-                                <div className="w-full bg-gray-200 rounded-full h-2">
-                                  <div
-                                    className="bg-young-everest-dark h-2 rounded-full"
-                                    style={{ width: `${agility}%` }}
-                                  ></div>
-                                </div>
-                              </div>
-                            </>
-                          );
-                        })()}
-                      </div>
-                    </div>
+              //                 <div>
+              //                   <div className="flex justify-between text-xs mb-1">
+              //                     <span>Leadership</span>
+              //                     <span>{leadership}/100</span>
+              //                   </div>
+              //                   <div className="w-full bg-gray-200 rounded-full h-2">
+              //                     <div
+              //                       className="bg-young-everest-secondary h-2 rounded-full"
+              //                       style={{ width: `${leadership}%` }}
+              //                     ></div>
+              //                   </div>
+              //                 </div>
 
-                    {/* Summit badge for exceptional players */}
-                    {Math.random() > 0.7 && (
-                      <div className="mt-4 bg-young-everest-ice/30 p-2 rounded-md flex items-center">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                          className="w-5 h-5 text-young-everest-secondary mr-2"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                        <span className="text-xs font-bold text-young-everest-primary">
-                          Summit Achiever
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
+              //                 <div>
+              //                   <div className="flex justify-between text-xs mb-1">
+              //                     <span>Agility</span>
+              //                     <span>{agility}/100</span>
+              //                   </div>
+              //                   <div className="w-full bg-gray-200 rounded-full h-2">
+              //                     <div
+              //                       className="bg-young-everest-dark h-2 rounded-full"
+              //                       style={{ width: `${agility}%` }}
+              //                     ></div>
+              //                   </div>
+              //                 </div>
+              //               </>
+              //             );
+              //           })()}
+              //         </div>
+              //       </div>
+
+              //       {/* Summit badge for exceptional players */}
+              //       {Math.random() > 0.7 && (
+              //         <div className="mt-4 bg-young-everest-ice/30 p-2 rounded-md flex items-center">
+              //           <svg
+              //             xmlns="http://www.w3.org/2000/svg"
+              //             viewBox="0 0 24 24"
+              //             fill="currentColor"
+              //             className="w-5 h-5 text-young-everest-secondary mr-2"
+              //           >
+              //             <path
+              //               fillRule="evenodd"
+              //               d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"
+              //               clipRule="evenodd"
+              //             />
+              //           </svg>
+              //           <span className="text-xs font-bold text-young-everest-primary">
+              //             Summit Achiever
+              //           </span>
+              //         </div>
+              //       )}
+              //     </div>
+              //   </div>
+              // </div>
             ))}
           </div>
 
@@ -863,30 +873,30 @@ const HomePage = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 perspective-container">
               {/* Player Card */}
               <div className="transform transition-transform duration-500 hover:-translate-y-3 hover:scale-105">
-                <div className="bg-gradient-to-b from-white/20 to-white/5 backdrop-blur-md p-8 rounded-xl border border-white/20 shadow-lg h-full flex flex-col relative overflow-hidden">
+                <div className="bg-white/90 p-8 rounded-xl border border-white/20 shadow-lg h-full flex flex-col relative overflow-hidden">
                   {/* Card overlay pattern - mountain shape */}
                   <div className="absolute right-0 bottom-0 w-32 h-32 opacity-10">
                     <svg
                       viewBox="0 0 100 100"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <path d="M0,100 L50,0 L100,100 Z" fill="white" />
+                      <path d="M0,100 L50,0 L100,100 Z" fill="gray" />
                     </svg>
                   </div>
-                  <div className="bg-young-everest-secondary/20 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                  <div className="bg-young-everest-secondary w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
                     <div className="text-young-everest-secondary text-4xl">
                       ⚽
                     </div>
                   </div>
-                  <h3 className="text-2xl font-bold mb-3">Join as Player</h3>
+                  <h3 className="text-2xl text-young-everest-dark font-bold mb-3">Join as a Player</h3>
                   <div className="w-10 h-1 bg-young-everest-secondary mx-auto mb-4"></div>
-                  <p className="text-young-everest-light mb-6 flex-grow">
+                  <p className="text-young-everest-dark mb-6 flex-grow">
                     Showcase your talent and be part of our growing team of
                     passionate mountaineers on the pitch
                   </p>
                   <Link
                     to="/contact"
-                    className="group inline-flex items-center text-young-everest-secondary font-semibold hover:text-white transition-colors duration-300"
+                    className="group inline-flex items-center text-young-everest-secondary font-semibold hover:text-gold transition-colors duration-300"
                   >
                     <span className="mr-2">Learn More</span>
                     <svg
@@ -907,7 +917,7 @@ const HomePage = () => {
 
               {/* Partner Card */}
               <div className="transform transition-transform duration-500 hover:-translate-y-3 hover:scale-105 md:translate-y-4">
-                <div className="bg-gradient-to-b from-white/20 to-white/5 backdrop-blur-md p-8 rounded-xl border border-white/20 shadow-lg h-full flex flex-col relative overflow-hidden">
+                <div className="bg-white/90 p-8 rounded-xl border border-white/20 shadow-lg h-full flex flex-col relative overflow-hidden">
                   {/* Card overlay pattern - flag shape */}
                   <div className="absolute right-0 bottom-0 w-32 h-32 opacity-10">
                     <svg
@@ -916,24 +926,24 @@ const HomePage = () => {
                     >
                       <path
                         d="M20,0 L80,0 L60,50 L80,100 L20,100 L40,50 Z"
-                        fill="white"
+                        fill="gray"
                       />
                     </svg>
                   </div>
-                  <div className="bg-young-everest-secondary/20 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                  <div className="bg-young-everest-secondary w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
                     <div className="text-young-everest-secondary text-4xl">
                       🏆
                     </div>
                   </div>
-                  <h3 className="text-2xl font-bold mb-3">Become a Partner</h3>
+                  <h3 className="text-2xl text-young-everest-dark font-bold mb-3">Become a Partner</h3>
                   <div className="w-10 h-1 bg-young-everest-secondary mx-auto mb-4"></div>
-                  <p className="text-young-everest-light mb-6 flex-grow">
+                  <p className="text-young-everest-dark mb-6 flex-grow">
                     Support our club and gain visibility in our community as we
                     climb toward our goals
                   </p>
                   <Link
                     to="/contact"
-                    className="group inline-flex items-center text-young-everest-secondary font-semibold hover:text-white transition-colors duration-300"
+                    className="group inline-flex items-center text-young-everest-secondary font-semibold hover:text-gold transition-colors duration-300"
                   >
                     <span className="mr-2">Learn More</span>
                     <svg
@@ -954,32 +964,32 @@ const HomePage = () => {
 
               {/* Support Card */}
               <div className="transform transition-transform duration-500 hover:-translate-y-3 hover:scale-105">
-                <div className="bg-gradient-to-b from-white/20 to-white/5 backdrop-blur-md p-8 rounded-xl border border-white/20 shadow-lg h-full flex flex-col relative overflow-hidden">
+                <div className="bg-white/90 p-8 rounded-xl border border-white/20 shadow-lg h-full flex flex-col relative overflow-hidden">
                   {/* Card overlay pattern - people shape */}
                   <div className="absolute right-0 bottom-0 w-32 h-32 opacity-10">
                     <svg
                       viewBox="0 0 100 100"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <circle cx="30" cy="30" r="20" fill="white" />
-                      <circle cx="70" cy="30" r="20" fill="white" />
-                      <circle cx="50" cy="70" r="25" fill="white" />
+                      <circle cx="30" cy="30" r="20" fill="gray" />
+                      <circle cx="70" cy="30" r="20" fill="gray" />
+                      <circle cx="50" cy="70" r="25" fill="gray" />
                     </svg>
                   </div>
-                  <div className="bg-young-everest-secondary/20 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                  <div className="bg-young-everest-secondary w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
                     <div className="text-young-everest-secondary text-4xl">
                       👥
                     </div>
                   </div>
-                  <h3 className="text-2xl font-bold mb-3">Support The Team</h3>
+                  <h3 className="text-2xl text-young-everest-dark font-bold mb-3">Support The Team</h3>
                   <div className="w-10 h-1 bg-young-everest-secondary mx-auto mb-4"></div>
-                  <p className="text-young-everest-light mb-6 flex-grow">
+                  <p className="text-young-everest-dark mb-6 flex-grow">
                     Attend our matches and cheer for Young Everest FC as we
                     tackle each challenge
                   </p>
                   <Link
                     to="/fixtures"
-                    className="group inline-flex items-center text-young-everest-secondary font-semibold hover:text-white transition-colors duration-300"
+                    className="group inline-flex items-center text-young-everest-secondary font-semibold hover:text-gold transition-colors duration-300"
                   >
                     <span className="mr-2">See Fixtures</span>
                     <svg
