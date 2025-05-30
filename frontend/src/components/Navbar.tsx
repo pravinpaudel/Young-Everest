@@ -21,21 +21,42 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-young-everest-primary text-white shadow-md">
-      <div className="container-custom py-2">
+    <nav className="bg-young-everest-primary text-white shadow-md z-50 relative">
+      {/* Mountain peak accent at top */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-young-everest-secondary"></div>
+      
+      {/* Subtle snowfall effect */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-30">
+        <div className="snowflakes-container">
+          {[...Array(5)].map((_, i) => (
+            <div key={i} className="snowflake" style={{
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${5 + Math.random() * 10}s`
+            }}></div>
+          ))}
+        </div>
+      </div>
+      
+      <div className="container-custom py-3 relative z-10">
         <div className="flex justify-between items-center">
-          <Link to="/" className="flex items-center space-x-3">
-            <img src="/src/assets/images/Logo.png" alt="Young Everest FC Logo" className="h-12 w-auto bg-gray-100" />
-            <span className="font-display text-xl md:text-2xl font-bold text-young-everest-secondary">
-              YOUNG EVEREST FC
-            </span>
+          <Link to="/" className="flex items-center space-x-3 group">
+            <div className="h-14 w-14 rounded-full bg-white p-1 shadow-lg transform transition-transform group-hover:rotate-12 group-hover:scale-105">
+              <img src="/src/assets/images/Logo.png" alt="Young Everest FC Logo" className="h-full w-full object-contain" />
+            </div>
+            <div>
+              <span className="font-display text-xl md:text-2xl font-bold text-white block">
+                <span className="text-young-everest-secondary">YOUNG</span> EVEREST
+              </span>
+              <span className="text-xs text-young-everest-light tracking-wider">A HIMALAYAN SPIRIT FOOTBALL CLUB</span>
+            </div>
           </Link>
           
           {/* Mobile menu button */}
           <div className="md:hidden">
             <button
               type="button"
-              className="p-2 text-white"
+              className="p-2 text-white bg-young-everest-dark/50 rounded-md"
               onClick={toggleMenu}
               aria-label="Toggle menu"
             >
@@ -48,38 +69,52 @@ const Navbar = () => {
           </div>
           
           {/* Desktop menu */}
-          <div className="hidden md:flex space-x-6 items-center">
+          <div className="hidden md:flex space-x-8 items-center">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
-                className={`climbing-link hover:text-young-everest-secondary transition-colors font-medium ${
-                  isActive(link.path) ? 'text-young-everest-secondary' : ''
+                className={`climbing-link hover:text-young-everest-secondary transition-colors font-bold ${
+                  isActive(link.path) 
+                    ? 'text-young-everest-secondary after:bg-young-everest-secondary after:h-0.5 after:w-full after:absolute after:bottom-[-4px] after:left-0 relative' 
+                    : ''
                 }`}
               >
                 {link.name}
               </Link>
             ))}
+            <Link to="/contact" className="btn-secondary text-sm px-4 py-2">
+              Join the Club
+            </Link>
           </div>
         </div>
         
         {/* Mobile menu */}
         <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
-          <div className="pt-2 pb-3 space-y-1">
+          <div className="pt-3 pb-4 space-y-2 mt-3 bg-young-everest-dark/90 backdrop-blur-sm rounded-lg">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
-                className={`block py-2 px-3 rounded-md ${
+                className={`block py-2 px-4 ${
                   isActive(link.path)
-                    ? 'bg-young-everest-dark text-young-everest-secondary'
-                    : 'hover:bg-young-everest-dark hover:text-young-everest-secondary'
+                    ? 'bg-young-everest-primary text-young-everest-secondary font-bold border-l-4 border-young-everest-secondary'
+                    : 'hover:bg-young-everest-primary/50 hover:text-young-everest-secondary'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.name}
               </Link>
             ))}
+            <div className="px-4 pt-3 mt-2 border-t border-young-everest-primary/30">
+              <Link 
+                to="/contact" 
+                className="block w-full py-2 px-4 bg-young-everest-secondary text-young-everest-dark font-bold text-center rounded"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Join the Club
+              </Link>
+            </div>
           </div>
         </div>
       </div>
