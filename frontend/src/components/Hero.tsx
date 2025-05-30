@@ -75,11 +75,11 @@ const Hero = () => {
           {/* Logo section with floating animation */}
           <div className="flex justify-center">
             <div className="w-full max-w-md h-80 md:h-96 relative overflow-hidden shadow-2xl perspective-effect">
-              <div className="bg-gradient-to-tr from-young-everest-primary/80 to-young-everest-dark/80 p-6 rounded-lg h-full flex items-center justify-center border-2 border-young-everest-secondary/50 backdrop-blur-sm relative">
+              <div className="bg-gradient-to-tr from-young-everest-primary/80 to-young-everest-dark/80 p-6 rounded-lg h-full flex items-center justify-center relative">
                 <img 
                   src="/src/assets/images/Logo.png" 
                   alt="Young Everest FC Logo" 
-                  className="h-3/4 w-auto object-contain z-10 float-animation"
+                  className="h-3/4 w-auto object-contain z-10 float-animation bg-gray-100 rounded-lg"
                 />
                 {/* Mountain silhouette background */}
                 {/* <div className="absolute bottom-0 left-0 right-0 h-32 bg-contain bg-bottom bg-no-repeat z-0 opacity-30 mountain-silhouette"></div */}

@@ -1021,7 +1021,7 @@ const HomePage = () => {
               </div>
               <Link
                 to="/contact"
-                className="btn-secondary relative inline-flex items-center px-8 py-4 text-lg font-bold shadow-xl group transform transition-all duration-300 hover:translate-y-[-5px] hover:shadow-2xl"
+                className="btn-secondary relative inline-flex items-center px-8 py-4 text-lg font-bold shadow-xl group transform transition-all duration-300 hover:translate-y-[-5px] hover:shadow-2xl mb-10"
               >
                 <span className="relative z-10">Contact Us Today</span>
                 <svg
