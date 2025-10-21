@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import heroImage from '../assets/images/HeroSection.png';
+import logo from '../assets/images/Logo.png';
 import { useEffect, useState } from 'react';
 
 const Hero = () => {
@@ -77,7 +78,7 @@ const Hero = () => {
             <div className="w-full max-w-md h-80 md:h-96 relative overflow-hidden shadow-2xl perspective-effect">
               <div className="bg-gradient-to-tr from-young-everest-primary/80 to-young-everest-dark/80 p-6 rounded-lg h-full flex items-center justify-center relative">
                 <img 
-                  src="/src/assets/images/Logo.png" 
+                  src={logo} 
                   alt="Young Everest FC Logo" 
                   className="h-3/4 w-auto object-contain z-10 float-animation bg-gray-100 rounded-lg"
                 />
