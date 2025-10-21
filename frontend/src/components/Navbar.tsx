@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import logo from '../assets/images/Logo.png';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,7 +43,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center space-x-3 group">
             <div className="h-14 w-14 rounded-full bg-white p-1 shadow-lg transform transition-transform group-hover:rotate-12 group-hover:scale-105">
-              <img src="/src/assets/images/Logo.png" alt="Young Everest FC Logo" className="h-full w-full object-contain" />
+              <img src={logo} alt="Young Everest FC Logo" className="h-full w-full object-contain" />
             </div>
             <div>
               <span className="font-display text-xl md:text-2xl font-bold text-white block">

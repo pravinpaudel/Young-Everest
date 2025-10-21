@@ -9,11 +9,13 @@ import NewsPage from './pages/NewsPage'
 import ContactPage from './pages/ContactPage'
 import NotFoundPage from './pages/NotFoundPage'
 import ScrollToTop from './components/ScrollToTop'
+import { Analytics } from "@vercel/analytics/next"
 
 function App() {
   return (
     <Router>
       <ScrollToTop />
+      <Analytics />
       <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow relative mb-10">
