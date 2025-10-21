@@ -4,7 +4,7 @@
 import axios from "axios";
 
 // Base URL for the API
-const API_BASE_URL = import.meta.env.VITE_API_URL || "/api";
+const API_BASE_URL = import.meta.env.BASE_URL || "/api";
 
 // Create an axios instance
 const apiClient = axios.create({
@@ -40,7 +40,7 @@ export interface Fixture {
   venue: string;
   competition: "League" | "Cup" | "Friendly";
   timestamp: number | null;
-  status: "upcoming" | "completed" | "unknown";
+  status: "upcoming" | "completed" | "unknown" | "live";
 }
 
 export interface PlayerStat {
