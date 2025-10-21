@@ -5,13 +5,13 @@
 const scrapingConfig = {
   peiSoccer: {
     standings: {
-      url: 'https://www.peisoccer.com/division/1387/31540/standings',
+      url: 'https://peisoccer.com/division/1387/34875/standings',
       selector: '#tblStats',
       interactions: [
         {
           type: 'select',
           selector: '#ddlSeason',
-          value: '9443',
+          value: '12050',
           waitForNetwork: true
         }
       ],
@@ -34,7 +34,7 @@ const scrapingConfig = {
         {
           type: 'select',
           selector: '#ddlSeason',
-          value: '9443',
+          value: '12050',
           waitForNetwork: true
         }
       ],
@@ -84,53 +84,6 @@ const scrapingConfig = {
         awayTeamSelector: '.fp-match-card__team--away .fp-match-card__team-name',
         venueSelector: '.fp-match-card__venue',
         scoreSelector: '.fp-match-card__score'
-      }
-    }
-  },
-  
-  // Example configuration for ESPN
-  espn: {
-    standings: {
-      url: 'https://www.espn.com/soccer/standings/_/league/eng.1',
-      selector: '.standings__table',
-      interactions: [],
-      selectors: {
-        tableSelector: '.Table__TBODY',
-        teamNameSelector: '.team-link',
-        playedSelector: 'td:nth-child(3)',
-        winsSelector: 'td:nth-child(4)',
-        drawsSelector: 'td:nth-child(5)',
-        lossesSelector: 'td:nth-child(6)',
-        goalsForSelector: 'td:nth-child(7)',
-        goalsAgainstSelector: 'td:nth-child(8)',
-        pointsSelector: 'td:nth-child(10)'
-      }
-    },
-    fixtures: {
-      url: 'https://www.espn.com/soccer/fixtures/_/league/eng.1',
-      selector: '.schedule',
-      interactions: [],
-      selectors: {
-        fixtureSelector: '.schedule__item',
-        dateSelector: '.schedule__date',
-        timeSelector: '.schedule__time',
-        homeTeamSelector: '.schedule__team--home',
-        awayTeamSelector: '.schedule__team--away',
-        venueSelector: '.schedule__venue',
-        scoreSelector: '.schedule__score'
-      }
-    },
-    stats: {
-      url: 'https://www.espn.com/soccer/team/stats/_/id/360/league/eng.1',
-      selector: '.stats__table',
-      interactions: [],
-      selectors: {
-        teamNameSelector: '.stats__team-name',
-        teamLogoSelector: '.stats__team-logo img',
-        statBlockSelector: '.stats__item',
-        statLabelSelector: '.stats__label',
-        statValueSelector: '.stats__value',
-        playerSelector: '.stats__player'
       }
     }
   }

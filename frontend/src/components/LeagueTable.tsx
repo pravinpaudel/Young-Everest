@@ -16,7 +16,7 @@ interface EnhancedTeamStanding extends TeamStanding {
 const LeagueTable: React.FC<LeagueTableProps> = ({
   standingsUrl,
   cacheTimeInMinutes = 60, // Default to 1 hour cache
-  defaultUrl = 'https://www.premierleague.com/tables' // Default Premier League standings
+  defaultUrl = 'https://peisoccer.com/division/1387/34875/standings' // Default Premier League standings
 }) => {
   const [standings, setStandings] = useState<EnhancedTeamStanding[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);

@@ -115,7 +115,7 @@ const FixturesPage = () => {
           
           {/* Display Fixtures */}
           <Fixtures 
-            url="https://www.peisoccer.com/division/1387/31540/games" 
+            url="https://peisoccer.com/division/1387/34875/games" 
             filter={filter}
             cacheTimeInMinutes={60}
             setSeasonStats={setSeasonStats} 
@@ -132,7 +132,7 @@ const FixturesPage = () => {
             centered
           />
 
-          <LeagueTable standingsUrl='https://www.peisoccer.com/division/1387/31540/standings' />
+          <LeagueTable standingsUrl='https://peisoccer.com/division/1387/34875/standings' />
         </div>
       </section>
     </div>

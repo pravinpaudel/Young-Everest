@@ -79,7 +79,7 @@ async function scrapeDynamicContent(url, options = {}) {
         console.log(`Waiting for selector: ${selector}`);
         await page.waitForSelector(selector, { timeout: timeout })
           .catch(error => {
-            console.warn(`Selector ${selector} not found, continuing anyway: ${error.message}`);
+            console.warn(`❌ Selector ${selector} not found, continuing anyway: ${error.message}`);
           });
       }
 
@@ -101,18 +101,18 @@ async function scrapeDynamicContent(url, options = {}) {
       
       // Get the final HTML content
       const content = await page.content();
-      
-      console.log(`Successfully scraped content from: ${url}`);
-      
+
+      console.log(`✅ Successfully scraped content from: ${url}`);
+
       if (browser) {
         await browser.close();
         browser = null;
       }
-      
+
       return content;
       
     } catch (error) {
-      console.error(`Error during scraping:`, error);
+      console.error(`❌ Error during scraping:`, error);
       
       // Capture screenshot for debugging if enabled
       // if (captureScreenshot && browser) {
