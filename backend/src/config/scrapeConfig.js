@@ -28,7 +28,7 @@ const scrapingConfig = {
       }
     },
     fixtures: {
-      url: 'https://www.peisoccer.com/division/1387/31540/schedule',
+      url: 'https://peisoccer.com/division/1387/34875/games',
       selector: 'body',
       interactions: [
         {

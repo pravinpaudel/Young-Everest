@@ -53,6 +53,7 @@ async function getStandings(req, res) {
       
       if (detectedDomain && scrapingConfig[detectedDomain] && scrapingConfig[detectedDomain].standings) {
         const config = scrapingConfig[detectedDomain].standings;
+        scrapingUrl = config.url;
         selectors = config.selectors;
         interactions = config.interactions || [];
         console.log(`Detected and using configuration for ${detectedDomain}`);
@@ -129,11 +130,11 @@ async function getFixtures(req, res) {
       console.log(`Using predefined configuration for ${websiteId}`);
     } else if (url) {
       // If no websiteId but URL is provided, try to detect website
-      scrapingUrl = url;
       const detectedDomain = detectWebsiteFromUrl(url);
       
       if (detectedDomain && scrapingConfig[detectedDomain] && scrapingConfig[detectedDomain].fixtures) {
         const config = scrapingConfig[detectedDomain].fixtures;
+        scrapingUrl = config.url;
         selectors = config.selectors;
         interactions = config.interactions || [];
         console.log(`Detected and using configuration for ${detectedDomain}`);
