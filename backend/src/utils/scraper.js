@@ -36,7 +36,7 @@ class ScraperError extends Error {
 async function scrapeDynamicContent(url, options = {}) {
   const {
     selector = 'body', // Default selector to wait for
-    timeout = 30000,
+    timeout = 60000, // Increased to 60 seconds for cloud environments
     interactions = [], // Array of interactions to perform after loading the page
     //captureScreenshot = false, // Whether to capture screenshot on error for debugging
   } = options;
@@ -60,6 +60,7 @@ async function scrapeDynamicContent(url, options = {}) {
       await page.setViewport({ width: 1366, height: 768 });
 
       
+      // Try multiple wait strategies for better reliability
       const response = await page.goto(url, { 
         waitUntil: 'networkidle2', 
         timeout: timeout 
@@ -146,13 +147,13 @@ async function scrapeDynamicContent(url, options = {}) {
  * @param {number} timeout - Maximum time to wait in milliseconds
  * @returns {Promise<void>}
  */
-async function processInteraction(page, interaction, timeout = 30000) {
+async function processInteraction(page, interaction, timeout = 60000) {
   const { 
     type, 
     selector, 
     value, 
     waitForSelector, 
-    waitForNetwork = True,
+    waitForNetwork = true,
     options = {}
   } = interaction;
 
