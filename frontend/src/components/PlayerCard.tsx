@@ -8,7 +8,7 @@ type PlayerCardProps = {
   };
 };
 
-const PlayerCard = ({ name, position, number, image, stats }: PlayerCardProps) => {
+const PlayerCard = ({ name, position, number, image }: PlayerCardProps) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden group relative">
       {/* Mountain peak accent */}
@@ -36,7 +36,7 @@ const PlayerCard = ({ name, position, number, image, stats }: PlayerCardProps) =
         <h3 className="text-xl font-bold text-young-everest-primary">{name}</h3>
         <p className="text-gray-600 mb-2">{position}</p>
         
-        {stats && (
+        {/* {stats && (
           <div className="mt-3 pt-3 border-t border-gray-200">
             <h4 className="text-sm font-semibold text-gray-500 mb-2 flex items-center">
               <span className="mr-1">⛰️</span> Stats
@@ -50,7 +50,7 @@ const PlayerCard = ({ name, position, number, image, stats }: PlayerCardProps) =
               ))}
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
