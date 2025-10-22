@@ -193,7 +193,7 @@ const HomePage = () => {
 
                         {/* Teams section */}
                         <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                          <div className="flex flex-col items-start space-y-1">
+                          <div className="flex flex-col items-start space-y-1 flex-1">
                             <div
                               className={`text-lg font-bold ${
                                 isHomeMatch
@@ -208,18 +208,21 @@ const HomePage = () => {
                             </div>
                           </div>
 
-                          <div className="flex items-center justify-center">
-                            <div className="px-3 py-2 bg-gray-100 rounded-lg text-center">
-                              <div className="text-sm text-gray-500">VS</div>
-                              {fixture.status === "completed" && (
+                          <div className="flex items-center justify-center mx-3 flex-shrink-0">
+                            {fixture.status === "completed" ? (
+                              <div className="px-3 py-2 bg-gray-100 rounded-lg text-center">
                                 <div className="text-xl font-bold">
                                   {fixture.homeScore} - {fixture.awayScore}
                                 </div>
-                              )}
-                            </div>
+                              </div>
+                            ) : (
+                              <div className="px-3 py-2 bg-gray-100 rounded-lg text-center">
+                                <div className="text-sm font-bold text-gray-500">VS</div>
+                              </div>
+                            )}
                           </div>
 
-                          <div className="flex flex-col items-end space-y-1">
+                          <div className="flex flex-col items-end space-y-1 flex-1">
                             <div
                               className={`text-lg font-bold ${
                                 !isHomeMatch
