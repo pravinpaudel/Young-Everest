@@ -13,9 +13,15 @@ const PORT = process.env.PORT || 8000;
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://young-everest-frontend.vercel.app', 'https://youngeverest.vercel.app'],
+  origin: [
+    'http://localhost:5173', 
+    'https://young-everest-frontend.vercel.app', 
+    'https://youngeverest.vercel.app'
+  ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  credentials: true
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+  credentials: true,
+  optionsSuccessStatus: 200
 }));
 app.use(express.json({ limit: '2mb' }));  // Increase limit for large JSON payloads
 app.use(express.urlencoded({ extended: true, limit: '2mb' }));
@@ -33,5 +39,9 @@ app.use((err, req, res, next) => {
 // Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-  console.log(`Environment: ${process.env.NODE_ENV}`);
+  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`CORS enabled for: http://localhost:5173, https://youngeverest.vercel.app`);
 });
+
+// Export for serverless environments 
+module.exports = app;
