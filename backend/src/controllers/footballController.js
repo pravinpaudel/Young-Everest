@@ -31,6 +31,7 @@ async function getStandings(req, res) {
     // Check if we have valid cached data
     const now = Date.now();
     if (cache.standings.data && (now - cache.standings.timestamp) < CACHE_DURATION) {
+      console.log(`✅ Cache hit for standings`);
       return res.json({ data: cache.standings.data, fromCache: true });
     }
 
@@ -91,10 +92,12 @@ async function getStandings(req, res) {
       data: standings,
       timestamp: now
     };
-    
+
+    console.log(`✅ Fetched, cached and sent new standings data`);
+
     res.json({ data: standings, fromCache: false });
   } catch (error) {
-    console.error('Error getting standings:', error);
+    console.error('❌ Error getting standings:', error);
     res.status(500).json({ error: error.message });
   }
 }
@@ -109,6 +112,7 @@ async function getFixtures(req, res) {
     // Check if we have valid cached data
     const now = Date.now();
     if (cache.fixtures.data && (now - cache.fixtures.timestamp) < CACHE_DURATION) {
+      console.log(`✅ Cache hit for fixtures`);
       return res.json({ data: cache.fixtures.data, fromCache: true });
     }
 
@@ -170,9 +174,10 @@ async function getFixtures(req, res) {
       timestamp: now
     };
     
+    console.log(`✅ Fetched, cached and sent new fixtures data`);
     res.json({ data: fixtures, fromCache: false });
   } catch (error) {
-    console.error('Error getting fixtures:', error);
+    console.error('❌ Error getting fixtures:', error);
     res.status(500).json({ error: error.message });
   }
 }

@@ -26,6 +26,23 @@ app.use(cors({
 app.use(express.json({ limit: '2mb' }));  // Increase limit for large JSON payloads
 app.use(express.urlencoded({ extended: true, limit: '2mb' }));
 
+// Request logging middleware
+app.use((req, res, next) => {
+  const timestamp = new Date().toISOString();
+  console.log(`[${timestamp}] ${req.method} ${req.url}`);
+  console.log('-----');
+  
+  // Log response
+  const originalSend = res.send;
+  res.send = function(data) {
+    console.log(`✅ [${timestamp}] Response ${res.statusCode} for ${req.method} ${req.url}`);
+    res.send = originalSend;
+    return originalSend.call(this, data);
+  };
+  
+  next();
+});
+
 // Routes
 app.use('/api/football', footballRoutes);
 app.use('/api/test', testRoutes);
