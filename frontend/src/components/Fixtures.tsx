@@ -12,7 +12,7 @@ interface FixturesProps {
 }
 
 const Fixtures = ({
-    url = "https://www.peisoccer.com/division/1387/31540/games",
+    url = "https://peisoccer.com/division/1387/34875/games",
     filter = "all", // Default to showing all fixtures
     cacheTimeInMinutes = 60, // Default to 1 hour cache
     setSeasonStats
