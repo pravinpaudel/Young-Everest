@@ -45,7 +45,7 @@ const HomePage = () => {
   }, [dispatch]);
 
   return (
-    <div className="overflow-x-hidden">
+    <div>
       <Hero />
 
       {/* Fixtures & Results - "The Ascent Continues" Section */}
@@ -808,7 +808,7 @@ const HomePage = () => {
       </section>
 
       {/* "Join the Ascent" Call to Action Section */}
-      <section className="py-20 bg-young-everest-primary text-white relative z-0">
+      <section className="pt-20 pb-0 bg-young-everest-primary text-white relative">
         {/* Mountain silhouette background */}
         <div className="absolute inset-0 opacity-20 z-0">
           <div
@@ -1053,11 +1053,8 @@ const HomePage = () => {
               </Link>
             </div>
           </div>
-          {/* No mountain base divider - removed */}
         </div>
       </section>
-      
-      {/* No additional spacing needed */}
     </div>
   );
 };

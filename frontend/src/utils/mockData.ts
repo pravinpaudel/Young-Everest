@@ -37,7 +37,7 @@ export interface NewsItem {
 export const players: Player[] = [
   {
     id: 1,
-    name: 'Alex Johnson',
+    name: 'Anand Karki',
     position: 'Goalkeeper',
     number: 1,
     stats: {
@@ -48,7 +48,7 @@ export const players: Player[] = [
   },
   {
     id: 2,
-    name: 'Samuel Rivera',
+    name: 'Arjun Sapkota',
     position: 'Defender',
     number: 4,
     stats: {
@@ -59,7 +59,7 @@ export const players: Player[] = [
   },
   {
     id: 3,
-    name: 'Marcus Chen',
+    name: 'Siddhartha Gautam',
     position: 'Defender',
     number: 5,
     stats: {
@@ -70,7 +70,7 @@ export const players: Player[] = [
   },
   {
     id: 4,
-    name: 'Daniel Watson',
+    name: 'Kausal Watson',
     position: 'Midfielder',
     number: 8,
     stats: {
@@ -81,7 +81,7 @@ export const players: Player[] = [
   },
   {
     id: 5,
-    name: 'Omar Patel',
+    name: 'James Thapa',
     position: 'Midfielder',
     number: 10,
     stats: {
@@ -92,7 +92,7 @@ export const players: Player[] = [
   },
   {
     id: 6,
-    name: 'Jamal Thompson',
+    name: 'Ujjwal Sapkota',
     position: 'Forward',
     number: 9,
     stats: {
@@ -103,7 +103,7 @@ export const players: Player[] = [
   },
   {
     id: 7,
-    name: 'Carlos Mendez',
+    name: 'Aarin Thapa',
     position: 'Forward',
     number: 11,
     stats: {
@@ -114,7 +114,7 @@ export const players: Player[] = [
   },
   {
     id: 8,
-    name: 'Leo Nakamura',
+    name: 'Chris Thapa',
     position: 'Defender',
     number: 2,
     stats: {

@@ -10,6 +10,8 @@ export type SeasonStats = {
     draws: number;
     cleanSheets: number;
     goalScored: number;
+    goalsConceded: number;
+    winPercentage: number;
 };
 
 interface FixturesState {
@@ -38,6 +40,8 @@ const initialState: FixturesState = {
         draws: 0,
         cleanSheets: 0,
         goalScored: 0,
+        goalsConceded: 0,
+        winPercentage: 0,
     },
     isLoading: false,
     error: null,
@@ -53,6 +57,7 @@ const calculateSeasonStats = (fixtures: Fixture[]): SeasonStats => {
     let draws = 0;
     let cleanSheets = 0;
     let goalScored = 0;
+    let goalsConceded = 0;
 
     fixtures.forEach(fixture => {
         if (fixture.status === 'completed') {
@@ -75,6 +80,7 @@ const calculateSeasonStats = (fixtures: Fixture[]): SeasonStats => {
 
                 if (awayScoreNum === 0) cleanSheets++;
                 goalScored += homeScoreNum;
+                goalsConceded += awayScoreNum;
             } else if (isAway) {
                 if (awayScoreNum > homeScoreNum) wins++;
                 else if (homeScoreNum === awayScoreNum) draws++;
@@ -82,9 +88,13 @@ const calculateSeasonStats = (fixtures: Fixture[]): SeasonStats => {
 
                 if (homeScoreNum === 0) cleanSheets++;
                 goalScored += awayScoreNum;
+                goalsConceded += homeScoreNum;
             }
         }
     });
+
+    // Calculate win percentage
+    const winPercentage = matchesPlayed > 0 ? Math.round((wins / matchesPlayed) * 100) : 0;
 
     return {
         matchesPlayed,
@@ -92,7 +102,9 @@ const calculateSeasonStats = (fixtures: Fixture[]): SeasonStats => {
         losses,
         draws,
         cleanSheets,
-        goalScored
+        goalScored,
+        goalsConceded,
+        winPercentage
     };
 };
 

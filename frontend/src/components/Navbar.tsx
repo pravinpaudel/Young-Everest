@@ -42,7 +42,7 @@ const Navbar = () => {
       <div className="container-custom py-3 relative z-10">
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="h-14 w-14 rounded-full bg-white p-1 shadow-lg transform transition-transform group-hover:rotate-12 group-hover:scale-105">
+            <div className="h-14 w-14 rounded-full bg-white p-1 shadow-lg transform transition-transform group-hover:scale-105">
               <img src={logo} alt="Young Everest FC Logo" className="h-full w-full object-contain" />
             </div>
             <div>
@@ -70,21 +70,21 @@ const Navbar = () => {
           </div>
           
           {/* Desktop menu */}
-          <div className="hidden md:flex space-x-8 items-center">
+          <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
-                className={`climbing-link hover:text-young-everest-secondary transition-colors font-bold ${
+                className={`climbing-link hover:text-young-everest-secondary transition-colors font-bold relative outline-none focus:outline-none ${
                   isActive(link.path) 
-                    ? 'text-young-everest-secondary after:bg-young-everest-secondary after:h-0.5 after:w-full after:absolute after:bottom-[-4px] after:left-0 relative' 
+                    ? 'text-young-everest-secondary' 
                     : ''
                 }`}
               >
                 {link.name}
               </Link>
             ))}
-            <Link to="/contact" className="btn-secondary text-sm px-4 py-2">
+            <Link to="/contact" className="btn-secondary text-sm px-4 py-2 ml-2">
               Join the Club
             </Link>
           </div>

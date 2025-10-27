@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import logo from '../assets/images/Logo.png';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -88,7 +89,7 @@ const Footer = () => {
             <div className="flex items-center mb-6">
               <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mr-3">
                 <img 
-                  src="/src/assets/images/Logo.png" 
+                  src={logo} 
                   alt="Young Everest FC Logo" 
                   className="w-10 h-10 object-contain"
                 />

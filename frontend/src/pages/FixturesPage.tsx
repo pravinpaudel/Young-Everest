@@ -11,7 +11,9 @@ const FixturesPage = () => {
     losses: 0,
     draws: 0,
     cleanSheets: 0,
-    goalScored: 0
+    goalScored: 0,
+    goalsConceded: 0,
+    winPercentage: 0
   })
   
   return (
@@ -41,8 +43,8 @@ const FixturesPage = () => {
             </div>
             <div className="bg-young-everest-light p-4 rounded-lg text-center shadow-md relative overflow-hidden group">
               <div className="absolute bottom-0 right-0 w-0 h-0 border-b-16 border-r-16 border-young-everest-secondary border-opacity-10 transition-opacity duration-300 group-hover:border-opacity-20"></div>
-              <div className="text-3xl font-bold text-young-everest-primary mb-1">{seasonStats.wins}</div>
-              <div className="text-sm text-gray-600">Wins</div>
+              <div className="text-3xl font-bold text-young-everest-primary mb-1">{seasonStats.winPercentage}%</div>
+              <div className="text-sm text-gray-600">Win Rate</div>
             </div>
             <div className="bg-young-everest-light p-4 rounded-lg text-center shadow-md relative overflow-hidden group">
               <div className="absolute bottom-0 right-0 w-0 h-0 border-b-16 border-r-16 border-young-everest-secondary border-opacity-10 transition-opacity duration-300 group-hover:border-opacity-20"></div>
@@ -51,18 +53,18 @@ const FixturesPage = () => {
             </div>
             <div className="bg-young-everest-light p-4 rounded-lg text-center shadow-md relative overflow-hidden group">
               <div className="absolute bottom-0 right-0 w-0 h-0 border-b-16 border-r-16 border-young-everest-secondary border-opacity-10 transition-opacity duration-300 group-hover:border-opacity-20"></div>
-              <div className="text-3xl font-bold text-young-everest-primary mb-1">{seasonStats.losses}</div>
-              <div className="text-sm text-gray-600">Losses</div>
+              <div className="text-3xl font-bold text-young-everest-primary mb-1">{seasonStats.goalScored}</div>
+              <div className="text-sm text-gray-600">Goals Scored</div>
             </div>
             <div className="bg-young-everest-light p-4 rounded-lg text-center shadow-md relative overflow-hidden group">
               <div className="absolute bottom-0 right-0 w-0 h-0 border-b-16 border-r-16 border-young-everest-secondary border-opacity-10 transition-opacity duration-300 group-hover:border-opacity-20"></div>
               <div className="text-3xl font-bold text-young-everest-primary mb-1">{seasonStats.cleanSheets}</div>
-              <div className="text-sm text-gray-600">Cleansheets</div>
+              <div className="text-sm text-gray-600">Clean Sheets</div>
             </div>
             <div className="bg-young-everest-light p-4 rounded-lg text-center shadow-md relative overflow-hidden group">
               <div className="absolute bottom-0 right-0 w-0 h-0 border-b-16 border-r-16 border-young-everest-secondary border-opacity-10 transition-opacity duration-300 group-hover:border-opacity-20"></div>
-              <div className="text-3xl font-bold text-young-everest-primary mb-1">{seasonStats.goalScored}</div>
-              <div className="text-sm text-gray-600">Goals Scored</div>
+              <div className="text-3xl font-bold text-young-everest-primary mb-1">{seasonStats.goalsConceded}</div>
+              <div className="text-sm text-gray-600">Goals Conceded</div>
             </div>
           </div>
         </div>
