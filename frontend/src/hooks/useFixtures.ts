@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from './reduxHooks';
 import { fetchFixtures, setFilter } from '../store/slices/fixturesSlice';
 import type { SeasonStats } from '../store/slices/fixturesSlice';
+import { CACHE_TIME_MINUTES, API_URLS } from '../constants/config';
 
 interface UseFixturesOptions {
   url?: string;
@@ -25,9 +26,9 @@ interface UseFixturesReturn {
  * Provides an easy interface for components to access and manage fixtures
  */
 export const useFixtures = ({
-  url = "https://www.peisoccer.com/division/1387/31540/games",
+  url = API_URLS.FIXTURES,
   filter = "all",
-  cacheTimeInMinutes = 60,
+  cacheTimeInMinutes = CACHE_TIME_MINUTES,
   autoFetch = true
 }: UseFixturesOptions = {}): UseFixturesReturn => {
   const dispatch = useAppDispatch();

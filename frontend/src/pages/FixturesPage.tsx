@@ -2,6 +2,7 @@ import { useState } from 'react';
 import SectionTitle from '../components/SectionTitle';
 import LeagueTable from '../components/LeagueTable';
 import Fixtures from '../components/Fixtures';
+import { CACHE_TIME_MINUTES, API_URLS } from '../constants/config';
 
 const FixturesPage = () => {
   const [filter, setFilter] = useState<'all' | 'upcoming' | 'past'>('all');
@@ -117,9 +118,9 @@ const FixturesPage = () => {
           
           {/* Display Fixtures */}
           <Fixtures 
-            url="https://peisoccer.com/division/1387/34875/games" 
+            url={API_URLS.FIXTURES} 
             filter={filter}
-            cacheTimeInMinutes={60}
+            cacheTimeInMinutes={CACHE_TIME_MINUTES}
             setSeasonStats={setSeasonStats} 
           />
         </div>
@@ -134,7 +135,7 @@ const FixturesPage = () => {
             centered
           />
 
-          <LeagueTable standingsUrl='https://peisoccer.com/division/1387/34875/standings' />
+          <LeagueTable standingsUrl={API_URLS.STANDINGS} />
         </div>
       </section>
     </div>

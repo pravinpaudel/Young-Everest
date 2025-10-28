@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useFixtures } from "../hooks/useFixtures";
 import type { SeasonStats } from "../store/slices/fixturesSlice";
 import FixtureCard from "./FixtureCard";
+import { CACHE_TIME_MINUTES, API_URLS } from "../constants/config";
 
 interface FixturesProps {
     url?: string;
@@ -11,9 +12,9 @@ interface FixturesProps {
 }
 
 const FixturesSimplified = ({
-    url = "https://www.peisoccer.com/division/1387/31540/games",
+    url = API_URLS.FIXTURES,
     filter = "all", // Default to showing all fixtures
-    cacheTimeInMinutes = 60, // Default to 1 hour cache
+    cacheTimeInMinutes = CACHE_TIME_MINUTES, // Default cache time from config
     setSeasonStats
 }: FixturesProps) => {
     const { 

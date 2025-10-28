@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import footballService from '../utils/footballService';
 import type { TeamStanding } from '../utils/footballService';
+import { CACHE_TIME_MINUTES, API_URLS } from '../constants/config';
 
 interface LeagueTableProps {
   standingsUrl?: string;
@@ -15,8 +16,8 @@ interface EnhancedTeamStanding extends TeamStanding {
 
 const LeagueTable: React.FC<LeagueTableProps> = ({
   standingsUrl,
-  cacheTimeInMinutes = 60, // Default to 1 hour cache
-  defaultUrl = 'https://peisoccer.com/division/1387/34875/standings' // Default Premier League standings
+  cacheTimeInMinutes = CACHE_TIME_MINUTES, // Default cache time from config
+  defaultUrl = API_URLS.STANDINGS // Default standings URL from config
 }) => {
   const [standings, setStandings] = useState<EnhancedTeamStanding[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);

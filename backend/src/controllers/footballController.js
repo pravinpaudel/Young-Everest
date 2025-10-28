@@ -18,8 +18,8 @@ const cache = {
   stats: { data: null, timestamp: 0 }
 };
 
-// Cache duration in milliseconds (6 hours)
-const CACHE_DURATION = 6 * 60 * 60 * 1000;
+// Cache duration in milliseconds (2 hours)
+const CACHE_DURATION = 2 * 60 * 60 * 1000;
 
 /**
  * Get team standings

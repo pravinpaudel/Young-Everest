@@ -13,6 +13,7 @@ import {
 import type { Fixture } from "../utils/footballService";
 import NewsCard from "../components/NewsCard";
 import PlayerCard from "../components/PlayerCard";
+import { CACHE_TIME_MINUTES, API_URLS } from "../constants/config";
 
 const HomePage = () => {
   // Force scroll to top when component mounts
@@ -37,8 +38,8 @@ const HomePage = () => {
   useEffect(() => {
     dispatch(
       fetchFixtures({
-        url: "https://www.peisoccer.com/division/1387/31540/games",
-        cacheTimeInMinutes: 60,
+        url: API_URLS.FIXTURES,
+        cacheTimeInMinutes: CACHE_TIME_MINUTES,
         filter: "upcoming",
       })
     );

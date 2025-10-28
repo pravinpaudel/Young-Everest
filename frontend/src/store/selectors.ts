@@ -26,7 +26,7 @@ export const selectCompletedFixtures = (state: RootState) =>
   state.fixtures.fixtures.filter(fixture => fixture.status === 'completed');
 
 // Selector to check if fixtures data is fresh (within cache time)
-export const selectIsFixturesDataFresh = (cacheTimeMinutes: number = 60) => (state: RootState) => {
+export const selectIsFixturesDataFresh = (cacheTimeMinutes: number = 30) => (state: RootState) => {
   if (!state.fixtures.lastFetch) return false;
   const now = new Date().getTime();
   return (now - state.fixtures.lastFetch) < (cacheTimeMinutes * 60 * 1000);

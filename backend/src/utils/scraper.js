@@ -3,6 +3,55 @@ const cheerio = require('cheerio');
 const axios = require('axios');
 
 /**
+ * Parse a date string assuming it's in Atlantic Time (Canada)
+ * Atlantic Time: UTC-4 (Standard) or UTC-3 (Daylight)
+ * @param {string} dateString - Date string like "Dec 23, 2024 7:00 PM"
+ * @returns {number|null} - Unix timestamp (milliseconds) or null if invalid
+ */
+function parseAtlanticTimeDate(dateString) {
+  if (!dateString) return null;
+  
+  try {
+    // Create a date object - this will parse in server's timezone
+    const localDate = new Date(dateString);
+    
+    if (isNaN(localDate.getTime())) {
+      return null;
+    }
+    
+    // Get the date components
+    const year = localDate.getFullYear();
+    const month = localDate.getMonth();
+    const day = localDate.getDate();
+    const hours = localDate.getHours();
+    const minutes = localDate.getMinutes();
+    const seconds = localDate.getSeconds();
+    
+    // Determine if DST is in effect for Atlantic Time
+    // Atlantic DST runs from 2nd Sunday in March to 1st Sunday in November
+    const isDST = (month > 2 && month < 10) || // Definitely DST (Apr-Oct)
+                  (month === 2 && day >= 8) ||   // March (approximate)
+                  (month === 10 && day <= 7);     // November (approximate)
+    
+    // Atlantic Time offset: UTC-4 (standard) or UTC-3 (daylight)
+    const atlanticOffset = isDST ? -3 : -4;
+    
+    // Create a UTC date string and parse it
+    const utcDate = new Date(Date.UTC(year, month, day, hours, minutes, seconds));
+    
+    // Adjust for Atlantic timezone (subtract the offset in hours)
+    // If Atlantic is UTC-4, and we have 7:00 PM Atlantic = 11:00 PM UTC
+    const timestamp = utcDate.getTime() - (atlanticOffset * 60 * 60 * 1000);
+    
+    return timestamp;
+  } catch (e) {
+    console.error(`❌ Error parsing Atlantic Time date: ${dateString}`, e);
+    return null;
+  }
+}
+
+
+/**
  * Custom error class for scraper errors
  */
 class ScraperError extends Error {
@@ -351,11 +400,8 @@ function extractFixtures(html, selectors = {}) {
     }
 
     // Parse the date if possible
-    try {
-      fixture.timestamp = new Date(`${dateAndTime}`).getTime();
-    } catch (e) {
-      fixture.timestamp = null;
-    }
+    // The scraped date/time is in Atlantic Time (where PEI Soccer matches occur)
+    fixture.timestamp = parseAtlanticTimeDate(dateAndTime);
 
     // Determine if the fixture is upcoming, live, or completed
     const now = Date.now();
@@ -378,7 +424,7 @@ function extractFixtures(html, selectors = {}) {
 
     fixtures.push(fixture);
   });
-
+  
   return fixtures;
 }
 
@@ -458,6 +504,7 @@ module.exports = {
   extractFixtures,
   extractTeamStats,
   processInteraction,
+  parseAtlanticTimeDate,
   ScraperError
 }; 
 
