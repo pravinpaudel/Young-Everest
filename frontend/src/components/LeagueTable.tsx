@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import footballService from '../utils/footballService';
 import type { TeamStanding } from '../utils/footballService';
 import { CACHE_TIME_MINUTES, API_URLS } from '../constants/config';
+import LoadingSpinner from './LoadingSpinner';
 
 interface LeagueTableProps {
   standingsUrl?: string;
@@ -102,57 +103,60 @@ const LeagueTable: React.FC<LeagueTableProps> = ({
         {poolName && (
           <h3 className="text-xl font-bold mb-3 text-young-everest-primary">{poolName}</h3>
         )}
-        <table className="w-full bg-white shadow-md rounded-lg overflow-hidden">
-          <thead className="bg-young-everest-primary text-white">
-            <tr>
-              <th className="py-3 px-4 text-left">Rank</th>
-              <th className="py-3 px-4 text-left">Team</th>
-              <th className="py-3 px-4 text-center">MP</th>
-              <th className="py-3 px-4 text-center">W</th>
-              <th className="py-3 px-4 text-center">D</th>
-              <th className="py-3 px-4 text-center">L</th>
-              <th className="py-3 px-4 text-center">GF</th>
-              <th className="py-3 px-4 text-center">GA</th>
-              <th className="py-3 px-4 text-center">GD</th>
-              <th className="py-3 px-4 text-center">Pts</th>
-            </tr>
-          </thead>
-          <tbody className="text-gray-700">
-            {tableStandings.map((team, index) => (
-              <tr 
-                key={`${team.name}-${index}`}
-                className={index % 2 === 0 ? 'bg-gray-50 bg-young-everest-light' : 'bg-white'}
-              >
-                <td className="py-3 px-4 font-medium">{index + 1}</td>
-
-                {team.name === 'Young Everest' ? (
-                  <td className="py-3 px-4 font-bold text-young-everest-primary">{team.name} FC</td>
-                ) : (
-                  <td className="py-3 px-4 font-medium">{team.name}</td>
-                )}
-                
-                <td className="py-3 px-4 text-center">{team.played}</td>
-                <td className="py-3 px-4 text-center">{team.wins}</td>
-                <td className="py-3 px-4 text-center">{team.draws}</td>
-                <td className="py-3 px-4 text-center">{team.losses}</td>
-                <td className="py-3 px-4 text-center">{team.goalsFor}</td>
-                <td className="py-3 px-4 text-center">{team.goalsAgainst}</td>
-                <td className="py-3 px-4 text-center">{team.goalDifference}</td>
-                <td className="py-3 px-4 text-center font-bold">{team.points}</td>
+        <div className="bg-white shadow-md rounded-lg overflow-hidden">
+          <table className="w-full text-xs sm:text-sm md:text-base">
+            <thead className="bg-young-everest-primary text-white">
+              <tr>
+                <th className="py-2 px-1 sm:py-3 sm:px-2 md:px-4 text-left text-[10px] sm:text-xs md:text-sm">#</th>
+                <th className="py-2 px-1 sm:py-3 sm:px-2 md:px-4 text-left text-[10px] sm:text-xs md:text-sm">Team</th>
+                <th className="py-2 px-1 sm:py-3 sm:px-2 md:px-4 text-center text-[10px] sm:text-xs md:text-sm">MP</th>
+                <th className="py-2 px-1 sm:py-3 sm:px-2 md:px-4 text-center text-[10px] sm:text-xs md:text-sm">W</th>
+                <th className="py-2 px-1 sm:py-3 sm:px-2 md:px-4 text-center text-[10px] sm:text-xs md:text-sm">D</th>
+                <th className="py-2 px-1 sm:py-3 sm:px-2 md:px-4 text-center text-[10px] sm:text-xs md:text-sm">L</th>
+                <th className="py-2 px-1 sm:py-3 sm:px-2 md:px-4 text-center text-[10px] sm:text-xs md:text-sm">GF</th>
+                <th className="py-2 px-1 sm:py-3 sm:px-2 md:px-4 text-center text-[10px] sm:text-xs md:text-sm">GA</th>
+                <th className="py-2 px-1 sm:py-3 sm:px-2 md:px-4 text-center text-[10px] sm:text-xs md:text-sm">GD</th>
+                <th className="py-2 px-1 sm:py-3 sm:px-2 md:px-4 text-center text-[10px] sm:text-xs md:text-sm font-bold">Pts</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="text-gray-700">
+              {tableStandings.map((team, index) => (
+                <tr 
+                  key={`${team.name}-${index}`}
+                  className={index % 2 === 0 ? 'bg-gray-50 bg-young-everest-light' : 'bg-white'}
+                >
+                  <td className="py-2 px-1 sm:py-3 sm:px-2 md:px-4 font-medium text-[10px] sm:text-xs md:text-sm">{index + 1}</td>
+
+                  {team.name === 'Young Everest' ? (
+                    <td className="py-2 px-1 sm:py-3 sm:px-2 md:px-4 font-bold text-young-everest-primary text-[10px] sm:text-xs md:text-sm whitespace-nowrap">
+                      <span className="hidden sm:inline">{team.name} FC</span>
+                      <span className="sm:hidden">Young Everest FC</span>
+                    </td>
+                  ) : (
+                    <td className="py-2 px-1 sm:py-3 sm:px-2 md:px-4 font-medium text-[10px] sm:text-xs md:text-sm truncate max-w-[80px] sm:max-w-none" title={team.name}>
+                      {team.name}
+                    </td>
+                  )}
+                  
+                  <td className="py-2 px-1 sm:py-3 sm:px-2 md:px-4 text-center text-[10px] sm:text-xs md:text-sm">{team.played}</td>
+                  <td className="py-2 px-1 sm:py-3 sm:px-2 md:px-4 text-center text-[10px] sm:text-xs md:text-sm">{team.wins}</td>
+                  <td className="py-2 px-1 sm:py-3 sm:px-2 md:px-4 text-center text-[10px] sm:text-xs md:text-sm">{team.draws}</td>
+                  <td className="py-2 px-1 sm:py-3 sm:px-2 md:px-4 text-center text-[10px] sm:text-xs md:text-sm">{team.losses}</td>
+                  <td className="py-2 px-1 sm:py-3 sm:px-2 md:px-4 text-center text-[10px] sm:text-xs md:text-sm">{team.goalsFor}</td>
+                  <td className="py-2 px-1 sm:py-3 sm:px-2 md:px-4 text-center text-[10px] sm:text-xs md:text-sm">{team.goalsAgainst}</td>
+                  <td className="py-2 px-1 sm:py-3 sm:px-2 md:px-4 text-center text-[10px] sm:text-xs md:text-sm">{team.goalDifference}</td>
+                  <td className="py-2 px-1 sm:py-3 sm:px-2 md:px-4 text-center font-bold text-[10px] sm:text-xs md:text-sm">{team.points}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   };
 
   if (isLoading) {
-    return (
-      <div className="flex justify-center items-center p-10">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-      </div>
-    );
+    return <LoadingSpinner size="lg" message="Loading league standings..." />;
   }
 
   if (error && standings.length === 0) {
@@ -165,7 +169,7 @@ const LeagueTable: React.FC<LeagueTableProps> = ({
   }
 
   return (
-    <div className="overflow-x-auto shadow-md rounded-lg p-4">
+    <div className="shadow-md rounded-lg p-2 sm:p-4">
       {pools.length > 0 ? (
         // If we have pool data, group by pool and render separate tables
         <>

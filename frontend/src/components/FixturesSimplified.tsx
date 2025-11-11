@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useFixtures } from "../hooks/useFixtures";
 import type { SeasonStats } from "../store/slices/fixturesSlice";
 import FixtureCard from "./FixtureCard";
+import LoadingSpinner from "./LoadingSpinner";
 import { CACHE_TIME_MINUTES, API_URLS } from "../constants/config";
 
 interface FixturesProps {
@@ -30,11 +31,7 @@ const FixturesSimplified = ({
     }, [seasonStats, setSeasonStats]);
 
     if (isLoading) {
-        return (
-            <div className="flex justify-center items-center p-10">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-            </div>
-        );
+        return <LoadingSpinner size="lg" message="Loading fixtures..." />;
     }
 
     if (error && filteredFixtures.length === 0) {
