@@ -5,12 +5,14 @@ import { useEffect, useState } from 'react';
 
 const Hero = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   // Handle parallax scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setScrolled(scrollPosition > 50);
+      const scrollY = window.scrollY;
+      setScrollPosition(scrollY);
+      setScrolled(scrollY > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -19,14 +21,20 @@ const Hero = () => {
 
   return (
     <div className="relative bg-young-everest-primary text-white overflow-hidden min-h-screen flex items-center">
-      {/* Video background with fallback image */}
+      {/* Video background with fallback image - WITH PARALLAX */}
       <div className="absolute inset-0 z-0">
-        <div className="w-full h-full bg-black">
+        <div 
+          className="w-full h-full bg-black"
+          style={{
+            transform: `translateY(${scrollPosition * 0.5}px)`,
+            transition: 'transform 0.1s ease-out',
+          }}
+        >
           {/* Fallback image shown until video loads */}
           <img 
             src={heroImage} 
             alt="Mount Everest" 
-            className="w-full h-full object-cover opacity-70 absolute inset-0"
+            className="w-full h-full object-cover opacity-70 absolute inset-0 scale-105"
           />
           {/* Video background - replace with actual video once available */}
           <div className="absolute inset-0 bg-gradient-to-b from-young-everest-dark to-transparent opacity-80"></div>
@@ -98,11 +106,11 @@ const Hero = () => {
       </div>
       
       {/* Scroll down indicator */}
-      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+      {/* <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
         <div className="w-8 h-12 border-2 border-white/50 rounded-full flex justify-center">
           <div className="w-2 h-3 bg-white/70 rounded-full mt-2 animate-scrollDown"></div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
