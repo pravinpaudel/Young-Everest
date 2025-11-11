@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import heroImage from '../assets/images/HeroSection.png';
+import heroImage from '../assets/images/HeroSection.jpeg';
 import logo from '../assets/images/Logo.png';
 import { useEffect, useState } from 'react';
 

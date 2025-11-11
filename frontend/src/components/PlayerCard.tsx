@@ -1,3 +1,5 @@
+import jerseyImage from '../assets/images/Jersey.png'; 
+
 type PlayerCardProps = {
   name: string;
   position: string;
@@ -8,7 +10,7 @@ type PlayerCardProps = {
   };
 };
 
-const PlayerCard = ({ name, position, number, image }: PlayerCardProps) => {
+const PlayerCard = ({ name, position, number, image = jerseyImage }: PlayerCardProps) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden group relative">
       {/* Mountain peak accent */}
@@ -19,7 +21,7 @@ const PlayerCard = ({ name, position, number, image }: PlayerCardProps) => {
           <img
             src={image}
             alt={name}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
