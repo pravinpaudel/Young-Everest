@@ -16,7 +16,7 @@ app.use(cors({
   origin: [
     'http://localhost:5173', 
     'https://young-everest-frontend.vercel.app', 
-    'https://youngeverest.vercel.app'
+    process.env.FRONTEND_URL
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
